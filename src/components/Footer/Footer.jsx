@@ -1,4 +1,6 @@
+import "./Footer.css"
+
 export const Footer = () => {
-return ('soy yo')
+return (<div className="bodyFooter">el footer</div>)
 
 }

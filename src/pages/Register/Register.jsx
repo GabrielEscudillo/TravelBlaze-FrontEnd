@@ -1,5 +1,5 @@
 
 
 export const Register = () => {
-    return ('aqui va register')
-}
+  return ("aqui va register");
+};

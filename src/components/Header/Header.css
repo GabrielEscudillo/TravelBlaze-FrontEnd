@@ -1,0 +1,13 @@
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+  color: rgb(255, 255, 255); 
+  font-weight: bold;
+  font-size: 1.1rem;
+  font-family: 'Montserrat', sans-serif; 
+
+}
+
+.custom-navbar .navbar-brand:hover,
+.custom-navbar .nav-link:hover {
+  color: rgb(125, 156, 154); 
+}

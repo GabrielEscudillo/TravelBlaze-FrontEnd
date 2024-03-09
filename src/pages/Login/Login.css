@@ -1,0 +1,8 @@
+.loginBody {
+    background-color: rgb(18, 10, 47);
+    height: 100%;
+    margin: 9%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

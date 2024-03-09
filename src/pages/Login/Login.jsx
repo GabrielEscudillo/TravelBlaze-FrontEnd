@@ -1,60 +1,65 @@
-import { useDispatch, useSelector } from "react-redux";
-import "./Login.css"
-import { userData } from "../userSlice";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+import React, { useState } from "react";
 import { LoginInput } from "../../Components/LoginInput/LoginInput";
+import { userLogin } from "../../Services/apiCalls";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+import { login, userData } from "../userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+import "./Login.css"
+
 
 
 export const Login = () => {
     const [credentials, setCredentials] = useState({
-        email: "",
-        password: "",
-      });   
-      const [loginError, setLoginError] = useState(false); 
-
-      const dispatch = useDispatch();
-      const userRdxData = useSelector(userData);
-      const navigate = useNavigate();
-
-      const inputHandler = (event) => {
-        setCredentials((prevState) => ({
-          ...prevState,
-          [event.target.name]: event.target.value,
-        }));
-      };
-
-      const buttonHandler = () => {
-        userLogin(credentials)
-          .then((token) => {
-            if (!token) {
-              setLoginError(true); 
-              return;
-            }
-            const decodedToken = jwtDecode(token);
-            const data = {
-              token: token,
-              userData: decodedToken,
-            };
-            dispatch(login({ credentials: data }));
-            setTimeout(() => {
-              navigate("/profile");
-            });
-          })
-          .catch((err) => {
-            console.error("Ha ocurrido un error", err);
+      email: "",
+      password: "",
+    });
+    const [loginError, setLoginError] = useState(false); 
+  
+    const dispatch = useDispatch();
+    const userRdxData = useSelector(userData);
+    const navigate = useNavigate();
+  
+    const inputHandler = (event) => {
+      setCredentials((prevState) => ({
+        ...prevState,
+        [event.target.name]: event.target.value,
+      }));
+    };
+  
+    const buttonHandler = () => {
+      userLogin(credentials)
+        .then((token) => {
+          if (!token) {
             setLoginError(true); 
+            return;
+          }
+          const decodedToken = jwtDecode(token);
+          const data = {
+            token: token,
+            userData: decodedToken,
+          };
+          dispatch(login({ credentials: data }));
+          setTimeout(() => {
+            navigate("/profile");
           });
-      };
+        })
+        .catch((err) => {
+          console.error("Ha ocurrido un error", err);
+          setLoginError(true); 
+        });
+    };
+  
 
 
     return (
+        <div className="loginBody">
         <Container className="body">
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <div className="logInBox">
-              <h1>Welcome to tattooink</h1>
+              <h1>Welcome to TravelBlaze</h1>
               <h2>Log In</h2>
               <Form>
                 <Form.Group controlId="formBasicEmail">
@@ -75,7 +80,7 @@ export const Login = () => {
                     iconClass={"bi bi-lock"}
                   />
                 </Form.Group>
-                <Button variant="primary" onClick={buttonHandler} block>
+                <Button variant="primary" onClick={buttonHandler} block="true">
                   Log in
                 </Button>
               </Form>
@@ -91,6 +96,6 @@ export const Login = () => {
           </Col>
         </Row>
       </Container>
-
+      </div>
     );
 };

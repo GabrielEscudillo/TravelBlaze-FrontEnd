@@ -108,7 +108,7 @@ export const Header = () => {
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/agents">
               Agents
             </Nav.Link>
             <Nav.Link as={Link} to="/">
@@ -161,6 +161,7 @@ export const Header = () => {
                   </>
                 ) : (
                   <>
+                  
                     <NavDropdown.Item as={Link} to="/home">
                       Profile
                     </NavDropdown.Item>

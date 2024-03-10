@@ -17,3 +17,8 @@ export const userLogin = async (credentials) => {
     const res = await axios.post(`${API_URL}/users/register`, signUpData, {});
     return res.data;
   };
+
+  export const bringAllAgents = async () => {
+    const res = await axios.get(`${API_URL}/users/get/agents`);
+    return res.data;
+  };

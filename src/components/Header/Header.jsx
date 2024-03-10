@@ -7,14 +7,15 @@ import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, userData } from "../../Pages/userSlice";
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userRdxData = useSelector(userData);
 
-  const token = userRdxData.credentials.token;
-  const decoded = userRdxData.credentials?.userData;
+  const token = userRdxData?.credentials.token;
+  const decoded = userRdxData?.credentials?.userData;
   console.log(userRdxData);
 
   const logMeOut = () => {
@@ -24,6 +25,71 @@ export const Header = () => {
     });
   };
   return (
+
+  //   <Navbar
+  //   style={{ backgroundColor: "#101010" }}
+  //   variant="dark"
+  //   expand="lg"
+  //   className="text-light"
+  //   id="navbar"
+  // >
+  //   <Container className="container">
+  //     <Navbar.Brand href="/" className="ms-auto">
+  //       Tattooink
+  //     </Navbar.Brand>
+  //     <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  //     <Navbar.Collapse id="basic-navbar-nav">
+  //       <Nav className="me-auto">
+  //         <Nav.Link href="/">Home</Nav.Link>
+  //         <Nav.Link href="Artists">Artists</Nav.Link>
+  //         <NavDropdown title="My account" id="basic-nav-dropdown">
+  //           {!token ? (
+  //             <>
+  //               <NavDropdown.Item href="login">Login</NavDropdown.Item>
+  //               <NavDropdown.Item href="register">Register</NavDropdown.Item>
+  //             </>
+  //           ) : decoded.userRoles === "super_admin" ? (
+  //             <>
+  //               <NavDropdown.Item href="profile">Profile</NavDropdown.Item>
+  //               <NavDropdown.Item href="users">
+  //                 Users
+  //               </NavDropdown.Item>
+  //               <NavDropdown.Item href="allappointments">
+  //                 all appointments
+  //               </NavDropdown.Item>
+  //               <NavDropdown.Divider />
+  //               <NavDropdown.Item href="/" onClick={() => logMeOut()}>
+  //                 Log out
+  //               </NavDropdown.Item>
+  //             </>
+  //           ) : decoded.userRoles === "artist" ? (
+  //             <>
+  //               <NavDropdown.Item href="profile">Profile</NavDropdown.Item>
+  //               <NavDropdown.Item href="myappointments">
+  //                 My Appointments
+  //               </NavDropdown.Item>
+  //               <NavDropdown.Divider />
+  //               <NavDropdown.Item href="/" onClick={() => logMeOut()}>
+  //                 Log out
+  //               </NavDropdown.Item>
+  //             </>
+  //           ) : (
+  //             <>
+  //               <NavDropdown.Item href="profile">Profile</NavDropdown.Item>
+  //               <NavDropdown.Item href="appointments">
+  //                 Schedule an appointment
+  //               </NavDropdown.Item>
+  //               <NavDropdown.Divider />
+  //               <NavDropdown.Item href="/" onClick={() => logMeOut()}>
+  //                 Log out
+  //               </NavDropdown.Item>
+  //             </>
+  //           )}
+  //         </NavDropdown>
+  //       </Nav>
+  //     </Navbar.Collapse>
+  //   </Container>
+  // </Navbar>
     <Navbar
       className="custom-navbar"
       style={{ backgroundColor: "#327C8B" }}
@@ -42,7 +108,7 @@ export const Header = () => {
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/artists">
+            <Nav.Link as={Link} to="/">
               Agents
             </Nav.Link>
             <Nav.Link as={Link} to="/">
@@ -86,7 +152,7 @@ export const Header = () => {
                       Profile
                     </NavDropdown.Item>
                     <NavDropdown.Item as={Link} to="/myappointments">
-                      My Appointments
+                      Appointments
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={() => logMeOut()}>
@@ -99,7 +165,10 @@ export const Header = () => {
                       Profile
                     </NavDropdown.Item>
                     <NavDropdown.Item as={Link} to="/home">
-                      Schedule an Appointment
+                      Appointments
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/home">
+                      Bookings
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={() => logMeOut()}>

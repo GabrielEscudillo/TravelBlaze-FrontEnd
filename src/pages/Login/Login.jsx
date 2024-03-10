@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import "./Login.css"
 
-
-
 export const Login = () => {
     const [credentials, setCredentials] = useState({
       email: "",
@@ -26,15 +24,20 @@ export const Login = () => {
         ...prevState,
         [event.target.name]: event.target.value,
       }));
+      console.table(event.target.value)
     };
   
     const buttonHandler = () => {
+      console.log(userRdxData)
       userLogin(credentials)
         .then((token) => {
           if (!token) {
             setLoginError(true); 
             return;
           }
+
+          console.log(userRdxData)
+
           const decodedToken = jwtDecode(token);
           const data = {
             token: token,

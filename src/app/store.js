@@ -8,8 +8,8 @@ import { thunk } from "redux-thunk";
 
 
 const reducers = combineReducers({
-  user: userSlice,
-  userDetails: userDetailSlice
+  user: userSlice.reducer,
+  userDetail: userDetailSlice,
 });
 
 const persistConfig = {

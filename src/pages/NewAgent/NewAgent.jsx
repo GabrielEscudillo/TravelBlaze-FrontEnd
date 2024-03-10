@@ -1,68 +1,51 @@
 import React, { useState } from "react";
+import "./NewAgent.css";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { login, userData } from "../userSlice";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { userSignUp, userLogin } from "../../Services/apiCalls";
-import "./Register.css";
+import { agentSignUp } from "../../Services/apiCalls";
 
-export const Register = () => {
-  const [signUpData, setSignUpData] = useState({
+export const NewAgent = () => {
+  const [agentSignUpData, setAgentagentaSignUpData] = useState({
     name: "",
     last_name: "",
     address: "",
     email: "",
     password: "",
     phone_number: "",
+    photo: "",
+    specialty: "",
   });
-  const [showError, setShowError] = useState(false); 
+  const [showError, setShowError] = useState(false); // Nuevo estado para manejar el mensaje de error
 
   const inputHandler = (event) => {
-    setSignUpData((prevState) => ({
+    setAgentagentaSignUpData((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
   };
-
   const dispatch = useDispatch();
-  const userRdxData = useSelector(userData);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // verificar si estan completados los campos
     if (
-      !signUpData.name ||
-      !signUpData.last_name ||
-      !signUpData.address ||
-      !signUpData.email ||
-      !signUpData.password ||
-      !signUpData.phone_number 
+      !agentSignUpData.name ||
+      !agentSignUpData.last_name ||
+      !agentSignUpData.address ||
+      !agentSignUpData.email ||
+      !agentSignUpData.password ||
+      !agentSignUpData.phone_number ||
+      !agentSignUpData.photo ||
+      !agentSignUpData.specialty
     ) {
-      setShowError(true); // muestra el mensaje d error
+      setShowError(true); // muestra el mensaje de error
       return;
     }
     try {
-      await userSignUp(signUpData);
-      const credentials = {
-        email: signUpData.email,
-        password: signUpData.password,
-      };
-      const token = await userLogin(credentials);
-      if (!token) {
-        navigate("/login");
-        return;
-      }
-      const decodedToken = jwtDecode(token);
-      const data = {
-        token: token,
-        userData: decodedToken,
-      };
-      dispatch(login({ credentials: data }));
-      setTimeout(() => {
-        navigate("/profile");
-      });
+      await agentSignUp(agentSignUpData);
+      navigate("/users"); // navega a la página de perfil
     } catch (error) {
       console.error("Ha ocurrido un error", error);
     }
@@ -79,9 +62,8 @@ export const Register = () => {
               type="text"
               placeholder="Enter name"
               name="name"
-              value={signUpData.name}
+              value={agentSignUpData.name}
               onChange={inputHandler}
-              required
             />
           </Form.Group>
           <Form.Group controlId="formLastName">
@@ -90,9 +72,8 @@ export const Register = () => {
               type="text"
               placeholder="Enter last name"
               name="last_name"
-              value={signUpData.last_name}
+              value={agentSignUpData.last_name}
               onChange={inputHandler}
-              required
             />
           </Form.Group>
           <Form.Group controlId="formAddress">
@@ -101,9 +82,18 @@ export const Register = () => {
               type="text"
               placeholder="Enter address"
               name="address"
-              value={signUpData.address}
+              value={agentSignUpData.address}
               onChange={inputHandler}
-              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formSpecialty">
+            <Form.Label>Spectialty</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="specialty"
+              name="specialty"
+              value={agentSignUpData.specialty}
+              onChange={inputHandler}
             />
           </Form.Group>
           <Form.Group controlId="formEmail">
@@ -112,9 +102,8 @@ export const Register = () => {
               type="email"
               placeholder="Enter email"
               name="email"
-              value={signUpData.email}
+              value={agentSignUpData.email}
               onChange={inputHandler}
-              required
             />
           </Form.Group>
           <Form.Group controlId="formPassword">
@@ -123,9 +112,8 @@ export const Register = () => {
               type="password"
               placeholder="Enter password"
               name="password"
-              value={signUpData.password}
+              value={agentSignUpData.password}
               onChange={inputHandler}
-              required
             />
           </Form.Group>
           <Form.Group controlId="formPhoneNumber">
@@ -134,15 +122,26 @@ export const Register = () => {
               type="text"
               placeholder="Enter phone number"
               name="phone_number"
-              value={signUpData.phone_number}
+              value={agentSignUpData.phone_number}
               onChange={inputHandler}
-              required
             />
           </Form.Group>
-
-          {/* mensaje de error si no han compltado todos los campos */}
-          {showError && (
-            <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+          <Form.Group controlId="formphoto">
+            <Form.Label>Photo</Form.Label>
+            <Form.Control
+              type="link"
+              placeholder="Enter your photo"
+              name="photo"
+              value={agentSignUpData.photo}
+              onChange={inputHandler}
+            />
+          </Form.Group>
+          {showError && ( // Muestra el mensaje de error solo cuando showError es true
+            <Alert
+              variant="danger"
+              onClose={() => setShowError(false)}
+              dismissible
+            >
               Please fill in all fields
             </Alert>
           )}

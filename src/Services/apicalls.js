@@ -119,3 +119,7 @@ export const userLogin = async (credentials) => {
     return res;
   };
   
+  export const agentSignUp = async (agentSignUpData) => {
+    const res = await axios.post(`${API_URL}/users/createagent`, agentSignUpData, {});
+    return res.data;
+  };

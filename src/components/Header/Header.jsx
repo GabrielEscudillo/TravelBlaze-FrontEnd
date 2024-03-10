@@ -72,6 +72,9 @@ export const Header = () => {
                     <NavDropdown.Item as={Link} to="/allbookings">
                       Bookings
                     </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/newagent">
+                      New Agent
+                    </NavDropdown.Item>
                     <NavDropdown.Item as={Link} to="/allusers">
                       Users
                     </NavDropdown.Item>

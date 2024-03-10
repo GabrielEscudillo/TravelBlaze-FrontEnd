@@ -85,4 +85,12 @@ export const userLogin = async (credentials) => {
     return res.data;
   };
 
-  
+  export const removeBooking = async (token, id) => {
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const res = await axios.delete(`${API_URL}/bookings/${id}`, config);
+    return res.data;
+  };

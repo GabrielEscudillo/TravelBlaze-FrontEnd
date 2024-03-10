@@ -24,7 +24,6 @@ export const AllUsers = () => {
     });
   };
 
-  console.log(users);
   return (
     <div className="container">
       <h1 className="text-center mt-4 mb-4">All users</h1>

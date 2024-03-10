@@ -43,3 +43,14 @@ export const userLogin = async (credentials) => {
     const res = await axios.patch(`${API_URL}/users/${id}`, updateData, config);
     return res.data;
   };
+
+  export const bringBookings = async (token, id) => {
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+  
+    const res = await axios.get(`${API_URL}/bookings/mybookings/${id}`, config);
+    return res.data;
+  };

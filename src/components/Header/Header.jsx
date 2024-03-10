@@ -102,7 +102,7 @@ export const Header = () => {
                     <NavDropdown.Item as={Link} to="/home">
                       Appointments
                     </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/home">
+                    <NavDropdown.Item as={Link} to="/bookings">
                       Bookings
                     </NavDropdown.Item>
                     <NavDropdown.Divider />

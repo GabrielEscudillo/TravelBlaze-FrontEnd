@@ -54,3 +54,23 @@ export const userLogin = async (credentials) => {
     const res = await axios.get(`${API_URL}/bookings/mybookings/${id}`, config);
     return res.data;
   };
+
+  export const bringAllUsers = async (token) => {
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const res = await axios.get(`${API_URL}/users/get/allusers`, config);
+    return res.data;
+  };
+
+  export const removeUser = async (token, id) => {
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const res = await axios.delete(`${API_URL}/users/${id}`, config);
+    return res.data;
+  };

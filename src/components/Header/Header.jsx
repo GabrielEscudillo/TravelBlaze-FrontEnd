@@ -69,11 +69,14 @@ export const Header = () => {
                     <NavDropdown.Item as={Link} to="/profile">
                       Profile
                     </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/users">
+                    <NavDropdown.Item as={Link} to="/allusers">
                       Users
                     </NavDropdown.Item>
                     <NavDropdown.Item as={Link} to="/allappointments">
-                      All Appointments
+                      Appointments
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/allappointments">
+                      Bookings
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={() => logMeOut()}>

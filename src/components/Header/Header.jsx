@@ -88,13 +88,17 @@ export const Header = () => {
                   </>
                 ) : decoded.userRoles === "agent" ? (
                   <>
-                    <NavDropdown.Item as={Link} to="/profile">
-                      Profile
-                    </NavDropdown.Item>
+
                     <NavDropdown.Item as={Link} to="/myappointments">
                       Appointments
                     </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/newbooking">
+                      New Booking
+                    </NavDropdown.Item>
                     <NavDropdown.Divider />
+                    <NavDropdown.Item as={Link} to="/profile">
+                      Profile
+                    </NavDropdown.Item>
                     <NavDropdown.Item onClick={() => logMeOut()}>
                       Log out
                     </NavDropdown.Item>

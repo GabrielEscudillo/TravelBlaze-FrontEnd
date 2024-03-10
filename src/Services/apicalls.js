@@ -123,3 +123,8 @@ export const userLogin = async (credentials) => {
     const res = await axios.post(`${API_URL}/users/createagent`, agentSignUpData, {});
     return res.data;
   };
+
+  export const createBooking = async (bookingInfo) => {
+    const res = await axios.post(`${API_URL}/bookings/newbooking`, bookingInfo, {});
+    return res.data;
+  };

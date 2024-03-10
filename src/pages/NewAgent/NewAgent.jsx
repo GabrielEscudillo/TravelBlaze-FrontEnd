@@ -7,7 +7,7 @@ import { jwtDecode } from "jwt-decode";
 import { agentSignUp } from "../../Services/apiCalls";
 
 export const NewAgent = () => {
-  const [agentSignUpData, setAgentagentaSignUpData] = useState({
+  const [agentSignUpData, setAgentSignUpData] = useState({
     name: "",
     last_name: "",
     address: "",
@@ -20,7 +20,7 @@ export const NewAgent = () => {
   const [showError, setShowError] = useState(false); // Nuevo estado para manejar el mensaje de error
 
   const inputHandler = (event) => {
-    setAgentagentaSignUpData((prevState) => ({
+    setAgentSignUpData((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
@@ -150,9 +150,6 @@ export const NewAgent = () => {
             Register
           </Button>
         </Form>
-        <p className="mt-3">
-          Already have an account? <a href="/login">login</a>
-        </p>
       </div>
     </Container>
   );

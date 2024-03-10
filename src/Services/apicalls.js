@@ -22,3 +22,24 @@ export const userLogin = async (credentials) => {
     const res = await axios.get(`${API_URL}/users/get/agents`);
     return res.data;
   };
+
+  export const bringProfile = async (token, id) => {
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+  
+    const res = await axios.get(`${API_URL}/users/${id}`, config);
+    return res.data;
+  };
+
+  export const updateProfile = async (token, id, updateData) => {
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const res = await axios.patch(`${API_URL}/users/${id}`, updateData, config);
+    return res.data;
+  };

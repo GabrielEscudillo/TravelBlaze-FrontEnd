@@ -66,19 +66,19 @@ export const Header = () => {
                   </>
                 ) : decoded.userRoles === "super_admin" ? (
                   <>
-                    <NavDropdown.Item as={Link} to="/profile">
-                      Profile
+                    <NavDropdown.Item as={Link} to="/allappointments">
+                      Appointments
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/allbookings">
+                      Bookings
                     </NavDropdown.Item>
                     <NavDropdown.Item as={Link} to="/allusers">
                       Users
                     </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/allappointments">
-                      Appointments
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/allappointments">
-                      Bookings
-                    </NavDropdown.Item>
                     <NavDropdown.Divider />
+                    <NavDropdown.Item as={Link} to="/profile">
+                      Profile
+                    </NavDropdown.Item>
                     <NavDropdown.Item onClick={() => logMeOut()}>
                       Log out
                     </NavDropdown.Item>

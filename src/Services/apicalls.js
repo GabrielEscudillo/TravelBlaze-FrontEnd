@@ -12,3 +12,8 @@ export const userLogin = async (credentials) => {
       throw error;
     }
   };
+
+  export const userSignUp = async (signUpData) => {
+    const res = await axios.post(`${API_URL}/users/register`, signUpData, {});
+    return res.data;
+  };

@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { Form, Button, Col, Tab, Tabs, Container, Row } from "react-bootstrap";
+import { Col, Tab, Tabs, Container, Row } from "react-bootstrap";
 import "./NewBooking.css";
-import { createBooking } from "../../Services/apiCalls";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { FlightTab } from "../../Components/FlightTab/FlightTab";
 import { HotelTab } from "../../Components/HotelTab/HotelTab";
+import { FlightAndHotelTab } from "../../Components/FlightAndHotelTab/FlightAndHotelTab";
+import { CruiseTab } from "../../Components/CruiseTab/CruiseTab";
 
 export const NewBooking = () => {
   const [bookingType, setBookingType] = useState(null);
-
 
   const handleBookingType = (type) => {
     setBookingType(type);
@@ -34,10 +32,14 @@ export const NewBooking = () => {
                   <FlightTab />
                 </Tab>
                 <Tab eventKey="hotel" title="Hotel">
-                <HotelTab />
+                  <HotelTab />
                 </Tab>
-                <Tab eventKey="flightHotel" title="Flight + Hotel" />
-                <Tab eventKey="cruise" title="Cruise" />
+                <Tab eventKey="flightHotel" title="Flight + Hotel">
+                  <FlightAndHotelTab />
+                </Tab>
+                <Tab eventKey="cruise" title="Cruise">
+                <CruiseTab />
+                </Tab>
               </Tabs>
             </div>
           </Col>

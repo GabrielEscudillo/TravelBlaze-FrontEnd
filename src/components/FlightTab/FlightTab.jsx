@@ -3,8 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { createBooking } from "../../Services/apiCalls";
 
-export const FlightTab = ({ onChange }) => {
-
+export const FlightTab = () => {
   const [bookingInfo, setBookingInfo] = useState({
     date_of_purchase: "",
     price: "",
@@ -34,7 +33,7 @@ export const FlightTab = ({ onChange }) => {
       console.error("Error while creating booking:", error);
     }
   };
- console.log(event.target.value)
+  console.log(event.target.value);
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formUserId">
@@ -127,13 +126,9 @@ export const FlightTab = ({ onChange }) => {
         />
       </Form.Group>
       // Agrega más inputs aquí según sea necesario
-      <Button
-                variant="primary"
-                type="submit"
-                className="create-booking-btn"
-              >
-                Crear Booking
-              </Button>
+      <Button variant="primary" type="submit" className="create-booking-btn">
+        Crear Booking
+      </Button>
     </Form>
   );
 };

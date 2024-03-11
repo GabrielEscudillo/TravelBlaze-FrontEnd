@@ -5,6 +5,7 @@ import { createBooking } from "../../Services/apiCalls";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { FlightTab } from "../../Components/FlightTab/FlightTab";
+import { HotelTab } from "../../Components/HotelTab/HotelTab";
 
 export const NewBooking = () => {
   const [bookingType, setBookingType] = useState(null);
@@ -32,7 +33,9 @@ export const NewBooking = () => {
                 <Tab eventKey="flight" title="Flight">
                   <FlightTab />
                 </Tab>
-                <Tab eventKey="hotel" title="Hotel" />
+                <Tab eventKey="hotel" title="Hotel">
+                <HotelTab />
+                </Tab>
                 <Tab eventKey="flightHotel" title="Flight + Hotel" />
                 <Tab eventKey="cruise" title="Cruise" />
               </Tabs>

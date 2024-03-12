@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { createBooking } from "../../Services/apiCalls";
+
 
 export const FlightTab = () => {
   const [bookingInfo, setBookingInfo] = useState({
@@ -16,6 +17,9 @@ export const FlightTab = () => {
     date_of_return: "",
   });
 
+
+  const [showError, setShowError] = useState(false);
+
   const inputHandler = (event) => {
     setBookingInfo((prevState) => ({
       ...prevState,
@@ -26,14 +30,30 @@ export const FlightTab = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
+    if (
+      !bookingInfo.date_of_purchase ||
+      !bookingInfo.price ||
+      !bookingInfo.user_id ||
+      !bookingInfo.airline ||
+      !bookingInfo.flight_number ||
+      !bookingInfo.departure ||
+      !bookingInfo.destination ||
+      !bookingInfo.date_of_departure ||
+      !bookingInfo.date_of_return
+      ) {
+        setShowError(true);
+        setTimeout(() => {
+          setShowError(false);
+        }, 600);  // muestra el mensaje d error
+        return;
+      }
+      try {
       await createBooking(bookingInfo);
       navigate("/profile");
     } catch (error) {
       console.error("Error while creating booking:", error);
     }
   };
-  console.log(event.target.value);
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formUserId">
@@ -125,7 +145,15 @@ export const FlightTab = () => {
           onChange={inputHandler}
         />
       </Form.Group>
-      // Agrega más inputs aquí según sea necesario
+      {showError && (
+            <Alert
+              variant="danger"
+              onClose={() => setShowError(false)}
+              dismissible
+            >
+              Please fill in all fields
+            </Alert>
+          )}
       <Button variant="primary" type="submit" className="create-booking-btn">
         Crear Booking
       </Button>

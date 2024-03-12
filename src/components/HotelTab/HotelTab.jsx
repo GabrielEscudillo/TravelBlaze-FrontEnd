@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { createBooking } from "../../Services/apiCalls";
 
@@ -15,6 +15,8 @@ export const HotelTab = () => {
     check_out_date: "",
   });
 
+  const [showError, setShowError] = useState(false);
+
   const inputHandler = (event) => {
     setBookingInfo((prevState) => ({
       ...prevState,
@@ -25,6 +27,22 @@ export const HotelTab = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (
+      !bookingInfo.date_of_purchase ||
+      !bookingInfo.price ||
+      !bookingInfo.user_id ||
+      !bookingInfo.hotel_name ||
+      !bookingInfo.address ||
+      !bookingInfo.guests ||
+      !bookingInfo.check_in_date ||
+      !bookingInfo.check_out_date 
+    ) {
+      setShowError(true);
+      setTimeout(() => {
+        setShowError(false);
+      }, 600);  // muestra el mensaje d error
+      return;
+    }
     try {
       await createBooking(bookingInfo);
       navigate("/profile");
@@ -32,7 +50,6 @@ export const HotelTab = () => {
       console.error("Error while creating booking:", error);
     }
   };
-  console.log(event.target.value);
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formUserId">
@@ -115,8 +132,15 @@ export const HotelTab = () => {
         />
       </Form.Group>
       
-      // Agrega más inputs aquí según sea necesario
-      <Button variant="primary" type="submit" className="create-booking-btn">
+      {showError && (
+            <Alert
+              variant="danger"
+              onClose={() => setShowError(false)}
+              dismissible
+            >
+              Please fill in all fields
+            </Alert>
+          )}      <Button variant="primary" type="submit" className="create-booking-btn">
         Crear Booking
       </Button>
     </Form>

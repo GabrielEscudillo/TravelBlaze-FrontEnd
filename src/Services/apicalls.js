@@ -144,3 +144,50 @@ export const createCruise = async (bookingInfo) => {
   );
   return res.data;
 };
+
+export const bringAppointments = async (token, id) => {
+  const config = {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  };
+
+  const res = await axios.get(
+    `${API_URL}/appointments/user/${id}`,
+    config
+  );
+  return res.data;
+};
+
+export const updateAppointment = async (token, id, updatedAppointment) => {
+  const config = {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  };
+  const res = await axios.patch(
+    `${API_URL}/appointments/${id}`,
+    updatedAppointment,
+    config
+  );
+  return res.data;
+};
+
+export const createAppointment = async (token, appointmentData) => {
+  const config = {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  };
+  const res = await axios.post(
+    `${API_URL}/appointments/newAppointment`,
+    appointmentData,
+    config
+  );
+  return res;
+};
+
+export const bringAllServices = async () => {
+  const res = await axios.get(`${API_URL}/appointments/allservices`);
+  return res.data;
+};

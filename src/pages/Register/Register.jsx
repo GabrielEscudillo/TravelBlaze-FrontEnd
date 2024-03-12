@@ -16,7 +16,7 @@ export const Register = () => {
     password: "",
     phone_number: "",
   });
-  const [showError, setShowError] = useState(false); 
+  const [showError, setShowError] = useState(false);
 
   const inputHandler = (event) => {
     setSignUpData((prevState) => ({
@@ -38,7 +38,7 @@ export const Register = () => {
       !signUpData.address ||
       !signUpData.email ||
       !signUpData.password ||
-      !signUpData.phone_number 
+      !signUpData.phone_number
     ) {
       setShowError(true); // muestra el mensaje d error
       return;
@@ -81,7 +81,6 @@ export const Register = () => {
               name="name"
               value={signUpData.name}
               onChange={inputHandler}
-              required
             />
           </Form.Group>
           <Form.Group controlId="formLastName">
@@ -92,7 +91,6 @@ export const Register = () => {
               name="last_name"
               value={signUpData.last_name}
               onChange={inputHandler}
-              required
             />
           </Form.Group>
           <Form.Group controlId="formAddress">
@@ -103,7 +101,6 @@ export const Register = () => {
               name="address"
               value={signUpData.address}
               onChange={inputHandler}
-              required
             />
           </Form.Group>
           <Form.Group controlId="formEmail">
@@ -114,7 +111,6 @@ export const Register = () => {
               name="email"
               value={signUpData.email}
               onChange={inputHandler}
-              required
             />
           </Form.Group>
           <Form.Group controlId="formPassword">
@@ -125,7 +121,6 @@ export const Register = () => {
               name="password"
               value={signUpData.password}
               onChange={inputHandler}
-              required
             />
           </Form.Group>
           <Form.Group controlId="formPhoneNumber">
@@ -136,13 +131,16 @@ export const Register = () => {
               name="phone_number"
               value={signUpData.phone_number}
               onChange={inputHandler}
-              required
             />
           </Form.Group>
 
           {/* mensaje de error si no han compltado todos los campos */}
           {showError && (
-            <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+            <Alert
+              variant="danger"
+              onClose={() => setShowError(false)}
+              dismissible
+            >
               Please fill in all fields
             </Alert>
           )}

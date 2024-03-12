@@ -6,38 +6,44 @@ import { useNavigate } from "react-router-dom";
 import { login, userData } from "../userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
-import "./Login.css"
+import "./Login.css";
 
 export const Login = () => {
-    const [credentials, setCredentials] = useState({
-      email: "",
-      password: "",
-    });
-    const [loginError, setLoginError] = useState(false); 
-  
-    const dispatch = useDispatch();
-    const userRdxData = useSelector(userData);
-    const navigate = useNavigate();
-  
-    const inputHandler = (event) => {
-      setCredentials((prevState) => ({
-        ...prevState,
-        [event.target.name]: event.target.value,
-      }));
-      console.table(event.target.value)
-    };
-  
-    const buttonHandler = () => {
-      console.log(userRdxData)
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
+  const [loginError, setLoginError] = useState(false);
+  const [showError, setShowError] = useState(false);
+
+  const dispatch = useDispatch();
+  const userRdxData = useSelector(userData);
+  const navigate = useNavigate();
+
+  const inputHandler = (event) => {
+    setCredentials((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+    console.table(event.target.value);
+  };
+  const buttonHandler = (event) => {
+    event.preventDefault();
+    if (!credentials.email || !credentials.password) {
+      setShowError(true);
+      setTimeout(() => {
+        setShowError(false);
+      }, 400); 
+      return;
+    }
+    try {
       userLogin(credentials)
         .then((token) => {
           if (!token) {
-            setLoginError(true); 
+            setLoginError(true);
             return;
           }
-
-          console.log(userRdxData)
-
+  
           const decodedToken = jwtDecode(token);
           const data = {
             token: token,
@@ -50,15 +56,16 @@ export const Login = () => {
         })
         .catch((err) => {
           console.error("Ha ocurrido un error", err);
-          setLoginError(true); 
+          setLoginError(true);
         });
-    };
-  
+    } catch (error) {
+      console.error("Ha ocurrido un error", error);
+    }
+  };
 
-
-    return (
-        <div className="loginBody">
-        <Container className="body">
+  return (
+    <div className="loginBody">
+      <Container className="body">
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <div className="logInBox">
@@ -83,11 +90,20 @@ export const Login = () => {
                     iconClass={"bi bi-lock"}
                   />
                 </Form.Group>
+                {showError && (
+            <Alert
+              variant="danger"
+              onClose={() => setShowError(false)}
+              dismissible
+            >
+              Please inser your email and password
+            </Alert>
+          )}
                 <Button variant="primary" onClick={buttonHandler} block="true">
                   Log in
                 </Button>
               </Form>
-              {loginError && ( 
+              {loginError && (
                 <Alert variant="danger" className="mt-3">
                   Invalid email or password. Please try again.
                 </Alert>
@@ -99,6 +115,6 @@ export const Login = () => {
           </Col>
         </Row>
       </Container>
-      </div>
-    );
+    </div>
+  );
 };

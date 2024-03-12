@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Container, Row, Col, Card, Button, Form, Modal } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Form,
+  Modal,
+} from "react-bootstrap";
 import { userData } from "../userSlice";
 import {
   DeleteAppointment,
@@ -28,12 +36,12 @@ export const Profile = () => {
       setEditableData(res);
     });
     bringAppointments(token, myId)
-    .then((appointments) => {
-      setMyAppointments(appointments);
-    })
-    .catch((error) => {
-      console.error("Error fetching appointments:", error);
-    });
+      .then((appointments) => {
+        setMyAppointments(appointments);
+      })
+      .catch((error) => {
+        console.error("Error fetching appointments:", error);
+      });
   }, [token, myId]);
 
   const inputHandler = (event) => {
@@ -49,7 +57,7 @@ export const Profile = () => {
         .then((updatedProfile) => {
           setProfileData(updatedProfile);
           setEditMode(false);
-          window.location.reload(); // Recargar 
+          window.location.reload(); // Recargar
         })
         .catch((error) => {
           console.error("Error updating profile:", error);
@@ -77,7 +85,7 @@ export const Profile = () => {
         const updatedAppointments = [...myAppointments];
         updatedAppointments[index] = { ...updatedAppointment, editable: false };
         setMyAppointments(updatedAppointments);
-        window.location.reload(); // Recargar la página 
+        window.location.reload(); // Recargar la página
       })
       .catch((error) => {
         console.error("Error updating appointment:", error);
@@ -87,7 +95,6 @@ export const Profile = () => {
   const cancelButtonHandler = (id) => {
     DeleteAppointment(token, id)
       .then(() => {
-        // Eliminar la cita del estado local
         const updatedAppointments = myAppointments.filter(
           (appointment) => appointment.id !== id
         );
@@ -119,10 +126,17 @@ export const Profile = () => {
                       >
                         {detailsOpen ? "Hide details" : "View details"}
                       </Button>
-                            <Button variant="primary" onClick={() => setShowModal(true)}>Crear Cita</Button>
-      <NewAppointment showModal={showModal} setShowModal={setShowModal} />
+                      <Button
+                        variant="primary"
+                        onClick={() => setShowModal(true)}
+                      >
+                        Crear Cita
+                      </Button>
+                      <NewAppointment
+                        showModal={showModal}
+                        setShowModal={setShowModal}
+                      />
 
-                      
                       {detailsOpen && (
                         <>
                           <ul className="list-group list-group-flush">
@@ -189,8 +203,6 @@ export const Profile = () => {
                           >
                             {editMode ? "Save" : "Update details"}
                           </Button>
-
-
                         </>
                       )}
                     </Card.Body>
@@ -262,7 +274,7 @@ export const Profile = () => {
                       {appointment.editable ? "Save" : "Reschedule"}
                     </Button>
                     <Button
-                      variant="danger" 
+                      variant="danger"
                       onClick={() => cancelButtonHandler(appointment.id)}
                     >
                       Cancel

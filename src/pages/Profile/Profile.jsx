@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { NuevaCITA } from "../../Components/Modals/NewAppointment";
-
 import { useSelector } from "react-redux";
 import { Container, Row, Col, Card, Button, Form, Modal } from "react-bootstrap";
 import { userData } from "../userSlice";
@@ -11,6 +9,7 @@ import {
   updateAppointment,
   updateProfile,
 } from "../../Services/apiCalls";
+import { NewAppointment } from "../../Components/Modals/NewAppointment";
 
 export const Profile = () => {
   const [profileData, setProfileData] = useState({});
@@ -121,7 +120,7 @@ export const Profile = () => {
                         {detailsOpen ? "Hide details" : "View details"}
                       </Button>
                             <Button variant="primary" onClick={() => setShowModal(true)}>Crear Cita</Button>
-      <NuevaCITA showModal={showModal} setShowModal={setShowModal} />
+      <NewAppointment showModal={showModal} setShowModal={setShowModal} />
 
                       
                       {detailsOpen && (

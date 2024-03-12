@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createAppointment, bringAllAgents, bringAllServices } from "../../Services/apiCalls"; 
 import { jwtDecode } from "jwt-decode";
 import { userData } from "../../Pages/userSlice";
 
-export const NuevaCITA = ({ showModal, setShowModal }) => {
+export const NewAppointment = ({ showModal, setShowModal }) => {
   const userRdxData = useSelector(userData);
   const myId = userRdxData.credentials.userData.userId;
   const [newAppointment, setNewAppointment] = useState({
@@ -18,7 +18,9 @@ export const NuevaCITA = ({ showModal, setShowModal }) => {
   });
   const [agents, setAgents] = useState([]);
   const [services, setServices] = useState([]);
-
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  
   useEffect(() => {
     if (agents.length === 0) {
       bringAllAgents().then((arts) => {
@@ -34,7 +36,6 @@ export const NuevaCITA = ({ showModal, setShowModal }) => {
 
   }, []);
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const inputHandler = (event) => {
@@ -43,7 +44,19 @@ export const NuevaCITA = ({ showModal, setShowModal }) => {
       [event.target.name]: event.target.value,
     }));
   };
-  console.log(event.target.value)
+
+  const validateForm = () => {
+    if (
+      !newAppointment.agent_id ||
+      !newAppointment.service_id ||
+      !newAppointment.date ||
+      !newAppointment.time
+    ) {
+      setErrorMessage("Please fill out all fields.");
+      return false;
+    }
+    return true;
+  };
 
   const buttonHandler = () => {
     const token = userRdxData.credentials.token;
@@ -51,7 +64,11 @@ export const NuevaCITA = ({ showModal, setShowModal }) => {
       navigate("/login");
       return;
     }
-
+  
+    if (!validateForm()) {
+      return;
+    }
+  
     createAppointment(token, newAppointment)
       .then((res) => {
         console.log(res);
@@ -60,12 +77,24 @@ export const NuevaCITA = ({ showModal, setShowModal }) => {
           token: token,
           userData: decodedToken,
         };
+        setSuccessMessage("Appointment successfully created.");
         setTimeout(() => {
+          setSuccessMessage(""); // Limpiar el mensaje después de 2 segundos
+          setShowModal(false); // Cerrar el modal después de limpiar el mensaje de éxito
           navigate("/profile");
+        }, 1000);
+  
+        // Restablecer los valores de newAppointment después de crear la cita
+        setNewAppointment({
+          user_id: myId,
+          agent_id: "",
+          date: "",
+          time: "",
+          service_id: "",
         });
       })
       .catch((err) => {
-        console.error("Ha ocurrido un error", err);
+        console.error("An error occurred", err);
       });
   };
 
@@ -87,7 +116,7 @@ export const NuevaCITA = ({ showModal, setShowModal }) => {
               <option value="">Select an agent</option>
               {agents.map((agent) => (
                 <option key={agent.id} value={agent.id}>
-                  {agent.name}
+                  {agent.name} - {agent.specialty}
                 </option>
               ))}
             </Form.Control>
@@ -100,7 +129,7 @@ export const NuevaCITA = ({ showModal, setShowModal }) => {
               value={newAppointment.service_id}
               onChange={inputHandler}
             >
-              <option value="">Select an agent</option>
+              <option value="">Select a service</option>
               {services.map((service) => (
                 <option key={service.id} value={service.id}>
                   {service.service_name}
@@ -126,6 +155,8 @@ export const NuevaCITA = ({ showModal, setShowModal }) => {
               onChange={inputHandler}
             />
           </Form.Group>
+          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+          {successMessage && <Alert variant="success">{successMessage}</Alert>}
         </Form>
       </Modal.Body>
       <Modal.Footer>
@@ -139,4 +170,3 @@ export const NuevaCITA = ({ showModal, setShowModal }) => {
     </Modal>
   );
 };
-

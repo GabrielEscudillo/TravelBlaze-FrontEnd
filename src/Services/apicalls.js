@@ -191,3 +191,13 @@ export const bringAllServices = async () => {
   const res = await axios.get(`${API_URL}/appointments/allservices`);
   return res.data;
 };
+
+export const bringAgentAppointments = async (token, id) => {
+  const config = {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  };
+  const res = await axios.get(`${API_URL}/appointments/agent/${id}`, config);
+  return res.data;
+};

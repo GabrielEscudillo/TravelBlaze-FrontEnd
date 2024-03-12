@@ -20,7 +20,7 @@ export const Header = () => {
   const logMeOut = () => {
     dispatch(logout({ credentials: {} }));
     setTimeout(() => {
-      navigate();
+      navigate("/home");
     });
   };
   return (
@@ -106,16 +106,14 @@ export const Header = () => {
                 ) : (
                   <>
                   
-                    <NavDropdown.Item as={Link} to="/profile">
-                      Profile
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/myappointments">
-                      Appointments
-                    </NavDropdown.Item>
+
                     <NavDropdown.Item as={Link} to="/bookings">
                       Bookings
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
+                    <NavDropdown.Item as={Link} to="/profile">
+                      Profile
+                    </NavDropdown.Item>
                     <NavDropdown.Item onClick={() => logMeOut()}>
                       Log out
                     </NavDropdown.Item>

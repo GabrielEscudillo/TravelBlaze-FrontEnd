@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { createBooking, createCruise } from "../../Services/apiCalls";
+import { createCruise } from "../../Services/apiCalls";
 
 export const CruiseTab = () => {
   const [bookingInfo, setBookingInfo] = useState({
@@ -22,9 +22,27 @@ export const CruiseTab = () => {
     }));
   };
   const navigate = useNavigate();
+  const [showError, setShowError] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (
+      !bookingInfo.date_of_purchase ||
+      !bookingInfo.price ||
+      !bookingInfo.user_id ||
+      !bookingInfo.cruise_line ||
+      !bookingInfo.cabin ||
+      !bookingInfo.route ||
+      !bookingInfo.date_of_departure ||
+      !bookingInfo.date_of_return 
+    ) {
+      setShowError(true);
+      setTimeout(() => {
+        setShowError(false);
+      }, 600);  // muestra el mensaje d error
+      return;
+    }
+
     try {
       await createCruise(bookingInfo);
       navigate("/profile");
@@ -115,8 +133,15 @@ export const CruiseTab = () => {
         />
       </Form.Group>
       
-      // Agrega más inputs aquí según sea necesario
-      <Button variant="primary" type="submit" className="create-booking-btn">
+      {showError && (
+            <Alert
+              variant="danger"
+              onClose={() => setShowError(false)}
+              dismissible
+            >
+              Please fill in all fields
+            </Alert>
+          )}      <Button variant="primary" type="submit" className="create-booking-btn">
         Crear Booking
       </Button>
     </Form>

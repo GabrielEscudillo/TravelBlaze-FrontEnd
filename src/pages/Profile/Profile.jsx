@@ -7,7 +7,7 @@ import {
   Card,
   Button,
   Form,
-  Modal,
+  Alert,
 } from "react-bootstrap";
 import { userData } from "../userSlice";
 import {
@@ -29,6 +29,7 @@ export const Profile = () => {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [myAppointments, setMyAppointments] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     bringProfile(token, myId).then((res) => {
@@ -53,6 +54,20 @@ export const Profile = () => {
 
   const buttonHandler = () => {
     if (editMode) {
+      // verificar si estan completados los campos
+      if (
+        !editableData.name ||
+        !editableData.last_name ||
+        !editableData.address ||
+        !editableData.phone_number
+      ) {
+        setShowError(true); // muestra el mensaje de error
+        setTimeout(() => {
+          setShowError(false);
+        }, 5000); // Aquí puedes ajustar el tiempo que quieres que el mensaje se muestre, en milisegundos
+        return;
+      }
+  
       updateProfile(token, myId, editableData)
         .then((updatedProfile) => {
           setProfileData(updatedProfile);
@@ -196,6 +211,15 @@ export const Profile = () => {
                               )}
                             </li>
                           </ul>
+                          {showError && (
+            <Alert
+              variant="danger"
+              onClose={() => setShowError(false)}
+              dismissible
+            >
+              Please fill in all fields
+            </Alert>
+          )}
                           <Button
                             variant="primary"
                             className="mt-3"

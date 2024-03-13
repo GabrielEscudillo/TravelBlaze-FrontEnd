@@ -27,70 +27,74 @@ export const AllBookings = () => {
 
   console.log(bookings);
   return (        
-  <div className="bookings-container">
-  <h2>My Bookings</h2>
-  {bookings ? (
-    bookings.length > 0 ? (
-      <ul>
-        {bookings.map((booking) => (
-          <li key={booking.id}>
-            <h3>Booking ID: {booking.id}</h3>
-            <p>Date of Purchase: {booking.date_of_purchase}</p>
-            <p>Price: {booking.price}</p>
-            {booking.flight && (
-              <div className="booking-details">
-                <h4>Flight Details</h4>
-                <p>Airline: {booking.flight.airline}</p>
-                <p>Flight Number: {booking.flight.flight_number}</p>
-                {/* Include other flight details here */}
-                <Button
-                    variant="danger"
-                    size="sm"
-                    onClick={() => removeButtonHandler(booking.id)}
-                  >
-                    Delete
-                  </Button>
+    <div className="bookings-container">
+      <h2>My Bookings</h2>
+      {bookings ? (
+        bookings.length > 0 ? (
+          <div className="card-container">
+            {bookings.map((booking) => (
+              <div key={booking.id} className="booking-card">
+                <Card className="mb-3">
+                  <Card.Body>
+                    <Card.Title className="mb-2">Booking ID: {booking.id}</Card.Title>
+                    <Card.Text className="mb-2">Date of Purchase: {booking.date_of_purchase}</Card.Text>
+                    <Card.Text className="mb-2">Price: {booking.price}</Card.Text>
+                    {booking.flight && (
+                      <div>
+                        <h4 className="mb-2">Flight Details</h4>
+                        <Card.Text className="mb-2">Airline: {booking.flight.airline}</Card.Text>
+                        <Card.Text className="mb-2">Flight Number: {booking.flight.flight_number}</Card.Text>
+                        <Card.Text className="mb-2">Name: {booking.user.name}</Card.Text>
+                        <Card.Text className="mb-2">Last name: {booking.user.last_name}</Card.Text>
+                        <Button
+                          variant="danger"
+                          size="sm"
+                          onClick={() => removeButtonHandler(booking.id)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    )}
+                    {booking.hotel && (
+                      <div>
+                        <h4 className="mb-2">Hotel Details</h4>
+                        <Card.Text className="mb-2">Hotel Name: {booking.hotel.hotel_name}</Card.Text>
+                        <Card.Text className="mb-2">Name: {booking.user.name}</Card.Text>
+                        <Card.Text className="mb-2">Last name: {booking.user.last_name}</Card.Text>
+                        <Button
+                          variant="danger"
+                          size="sm"
+                          onClick={() => removeButtonHandler(booking.id)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    )}
+                    {booking.cruise && (
+                      <div>
+                        <h4 className="mb-2">Cruise Details</h4>
+                        <Card.Text className="mb-2">Cabin: {booking.cruise.cabin}</Card.Text>
+                        <Card.Text className="mb-2">Route: {booking.cruise.route}</Card.Text>
+                        <Button
+                          variant="danger"
+                          size="sm"
+                          onClick={() => removeButtonHandler(booking.id)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    )}
+                  </Card.Body>
+                </Card>
               </div>
-            )}
-            {booking.hotel && (
-              <div className="booking-details">
-                <h4>Hotel Details</h4>
-                <p>Hotel Name: {booking.hotel.hotel_name}</p>
-                <p>Address: {booking.hotel.address}</p>
-                {/* Include other hotel details here */}
-                <Button
-                    variant="danger"
-                    size="sm"
-                    onClick={() => removeButtonHandler(booking.id)}
-                  >
-                    Delete
-                  </Button>
-              </div>
-            )}
-            {booking.cruise && (
-              <div className="booking-details">
-                <h4>Cruise Details</h4>
-                <p>Cabin: {booking.cruise.cabin}</p>
-                <p>Route: {booking.cruise.route}</p>
-                {/* Include other cruise details here */}
-                <Button
-                    variant="danger"
-                    size="sm"
-                    onClick={() => removeButtonHandler(booking.id)}
-                  >
-                    Delete
-                  </Button>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <p>No bookings found</p>
-    )
-  ) : (
-    <p>Loading...</p>
-  )}
-</div>
+            ))}
+          </div>
+        ) : (
+          <p>No bookings found</p>
+        )
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
 );
 };

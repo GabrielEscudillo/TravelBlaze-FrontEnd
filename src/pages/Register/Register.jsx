@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Alert } from "react-bootstrap";
+import { Form, Button, Container, Alert, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { login, userData } from "../userSlice";
 import { useNavigate } from "react-router-dom";
@@ -69,90 +69,91 @@ export const Register = () => {
   };
 
   return (
-    <Container className="mt-5">
-      <div id="signUpBox" className="bg-light p-4 rounded">
-        <h1 className="mb-4">Register</h1>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formName">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter name"
-              name="name"
-              value={signUpData.name}
-              onChange={inputHandler}
-            />
-          </Form.Group>
-          <Form.Group controlId="formLastName">
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter last name"
-              name="last_name"
-              value={signUpData.last_name}
-              onChange={inputHandler}
-            />
-          </Form.Group>
-          <Form.Group controlId="formAddress">
-            <Form.Label>Address</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter address"
-              name="address"
-              value={signUpData.address}
-              onChange={inputHandler}
-            />
-          </Form.Group>
-          <Form.Group controlId="formEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              name="email"
-              value={signUpData.email}
-              onChange={inputHandler}
-            />
-          </Form.Group>
-          <Form.Group controlId="formPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter password"
-              name="password"
-              value={signUpData.password}
-              onChange={inputHandler}
-            />
-          </Form.Group>
-          <Form.Group controlId="formPhoneNumber">
-            <Form.Label>Phone Number</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter phone number"
-              name="phone_number"
-              value={signUpData.phone_number}
-              onChange={inputHandler}
-            />
-          </Form.Group>
+    <Container id="Body" className="d-flex justify-content-center mt-5" style={{ maxWidth: "500px", margin: "auto"}}>
+    <Form onSubmit={handleSubmit} className="w-100" id="signUpBox">
+      <Row className="mb-2">
+        <Form.Group as={Col} controlId="formName">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter name"
+            name="name"
+            value={signUpData.name}
+            onChange={inputHandler}
+          />
+        </Form.Group>
 
-          {/* mensaje de error si no han compltado todos los campos */}
-          {showError && (
-            <Alert
-              variant="danger"
-              onClose={() => setShowError(false)}
-              dismissible
-            >
-              Please fill in all fields
-            </Alert>
-          )}
+        <Form.Group as={Col} controlId="formLastName">
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter last name"
+            name="last_name"
+            value={signUpData.last_name}
+            onChange={inputHandler}
+          />
+        </Form.Group>
+      </Row>
 
-          <Button variant="primary" type="submit" className="w-100">
-            Register
-          </Button>
-        </Form>
-        <p className="mt-3">
-          Already have an account? <a href="/login">login</a>
-        </p>
-      </div>
-    </Container>
+      <Form.Group className="mb-3" controlId="formAddress">
+        <Form.Label>Address</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter address"
+          name="address"
+          value={signUpData.address}
+          onChange={inputHandler}
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formEmail">
+        <Form.Label>Email</Form.Label>
+        <Form.Control
+          type="email"
+          placeholder="Enter email"
+          name="email"
+          value={signUpData.email}
+          onChange={inputHandler}
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control
+          type="password"
+          placeholder="Enter password"
+          name="password"
+          value={signUpData.password}
+          onChange={inputHandler}
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formPhoneNumber">
+        <Form.Label>Phone Number</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter phone number"
+          name="phone_number"
+          value={signUpData.phone_number}
+          onChange={inputHandler}
+        />
+      </Form.Group>
+
+      {/* mensaje de error si no han completado todos los campos */}
+      {showError && (
+        <Alert
+          variant="danger"
+          onClose={() => setShowError(false)}
+          dismissible
+        >
+          Please fill in all fields
+        </Alert>
+      )}
+
+      <Button variant="primary" type="submit" className="w-30">
+        Register
+      </Button>
+    </Form>
+  </Container>
   );
 };

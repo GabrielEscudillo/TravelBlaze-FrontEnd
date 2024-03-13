@@ -34,12 +34,12 @@ export const CruiseTab = () => {
       !bookingInfo.cabin ||
       !bookingInfo.route ||
       !bookingInfo.date_of_departure ||
-      !bookingInfo.date_of_return 
+      !bookingInfo.date_of_return
     ) {
       setShowError(true);
       setTimeout(() => {
         setShowError(false);
-      }, 600);  // muestra el mensaje d error
+      }, 600); // muestra el mensaje d error
       return;
     }
 
@@ -132,16 +132,12 @@ export const CruiseTab = () => {
           onChange={inputHandler}
         />
       </Form.Group>
-      
       {showError && (
-            <Alert
-              variant="danger"
-              onClose={() => setShowError(false)}
-              dismissible
-            >
-              Please fill in all fields
-            </Alert>
-          )}      <Button variant="primary" type="submit" className="create-booking-btn">
+        <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+          Please fill in all fields
+        </Alert>
+      )}{" "}
+      <Button variant="primary" type="submit" className="create-booking-btn">
         Crear Booking
       </Button>
     </Form>

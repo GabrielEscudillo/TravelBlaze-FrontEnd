@@ -26,7 +26,7 @@ export const Header = () => {
   return (
     <Navbar
       className="custom-navbar"
-      style={{ backgroundColor: "#327C8B" }}
+      style={{ backgroundColor: "#26425A" }}
       expand="lg"
     >
       <Container fluid>

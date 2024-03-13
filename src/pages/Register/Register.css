@@ -1,0 +1,14 @@
+#Body {
+    justify-content: center;
+    align-items: center;
+}
+
+#signUpBox {
+    margin-top: 3%;
+    margin-bottom: 10%;
+}
+
+button {
+    text-align: center;
+
+}

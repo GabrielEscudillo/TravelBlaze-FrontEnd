@@ -11,6 +11,7 @@ import { AllAppointments } from "./AllAppointments/AllAppointments";
 import { NewAgent } from "./NewAgent/NewAgent";
 import { NewBooking } from "./NewBooking/NewBooking";
 import { AgentAppointments } from "./AgentAppointments/AgentAppointments";
+import "./Body.css"
 
 export const Body = () => {
     return (

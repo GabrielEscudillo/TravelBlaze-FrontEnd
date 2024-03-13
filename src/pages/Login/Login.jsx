@@ -33,7 +33,7 @@ export const Login = () => {
       setShowError(true);
       setTimeout(() => {
         setShowError(false);
-      }, 400); 
+      }, 400);
       return;
     }
     try {
@@ -43,7 +43,7 @@ export const Login = () => {
             setLoginError(true);
             return;
           }
-  
+
           const decodedToken = jwtDecode(token);
           const data = {
             token: token,
@@ -64,57 +64,58 @@ export const Login = () => {
   };
 
   return (
-    <div className="loginBody">
-      <Container className="body">
-        <Row className="justify-content-center">
-          <Col xs={12} md={8} lg={6}>
-            <div className="logInBox">
-              <h1>Welcome to TravelBlaze</h1>
-              <h2>Log In</h2>
-              <Form>
-                <Form.Group controlId="formBasicEmail">
-                  <LoginInput
-                    type={"email"}
-                    name={"email"}
-                    handler={inputHandler}
-                    placeholder={"Enter your email"}
-                    iconClass={"bi bi-envelope"}
-                  />
-                </Form.Group>
-                <Form.Group controlId="formBasicPassword">
-                  <LoginInput
-                    type={"password"}
-                    name={"password"}
-                    handler={inputHandler}
-                    placeholder={"Enter your password"}
-                    iconClass={"bi bi-lock"}
-                  />
-                </Form.Group>
-                {showError && (
-            <Alert
-              variant="danger"
-              onClose={() => setShowError(false)}
-              dismissible
-            >
-              Please inser your email and password
-            </Alert>
-          )}
-                <Button variant="primary" onClick={buttonHandler} block="true">
-                  Log in
-                </Button>
-              </Form>
-              {loginError && (
-                <Alert variant="danger" className="mt-3">
-                  Invalid email or password. Please try again.
+    <Container id="loginBody" className="d-flex justify-content-center mt-5"style={{ maxWidth: "500px", margin: "auto"}}>
+      <Row className="mb-2">
+        <Col xs={12} md={8} lg={12} className="mx-auto">
+          {" "}
+          {/* Añadida la clase mx-auto */}
+          <div className="logInBox-name">
+            <h1>Welcome to TravelBlaze</h1>
+            <Form className="w-100" id="logInBox">
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <LoginInput
+                  type={"email"}
+                  name={"email"}
+                  handler={inputHandler}
+                  placeholder={"Insert your email"}
+                  iconClass={"bi bi-envelope"}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <LoginInput
+                  type={"password"}
+                  name={"password"}
+                  handler={inputHandler}
+                  placeholder={"Insert your password"}
+                  iconClass={"bi bi-lock"}
+                />
+              </Form.Group>
+              {showError && (
+                <Alert
+                  variant="danger"
+                  onClose={() => setShowError(false)}
+                  dismissible
+                >
+                  Por favor ingresa tu correo electrónico y contraseña
                 </Alert>
               )}
-              <p className="mt-3">
-                Don't have an account? <a href="/register">Sign up</a>
-              </p>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+              <Button variant="primary" onClick={buttonHandler} block="true">
+                Iniciar sesión
+              </Button>
+            </Form>
+            {loginError && (
+              <Alert variant="danger" className="mt-3">
+                Correo electrónico o contraseña incorrectos. Por favor,
+                inténtalo de nuevo.
+              </Alert>
+            )}
+            <p className="mt-3">
+              ¿No tienes una cuenta? <a href="/register">Regístrate</a>
+            </p>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };

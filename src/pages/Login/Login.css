@@ -1,8 +1,23 @@
-.loginBody {
-    background-color: rgb(18, 10, 47);
-    height: 100%;
-    margin: 9%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#loginBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  margin: 0;
+  padding: 0;
+}
+
+#logInBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: solid 0.1em black;
+  border-radius: 1em;
+  height: 16vw;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Ajusta los valores para cambiar el sombreado */
+}
+
+.logInBox-name h1 {
+  margin-top: -35%;
 }

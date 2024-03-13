@@ -15,7 +15,7 @@ export const Agents = () => {
 
   return (
     <>
-      <h1 className="team-title">Meet the team</h1>
+      <h1 className="team-title">Meet our team</h1>
       <div className="agent-container">
         {agents && agents.length > 0 ? (
           agents.map((agent) => {
@@ -27,8 +27,8 @@ export const Agents = () => {
                   className="agent-img"
                 />
                 <div className="agent-info">
-                  <p className="agent-name">{agent.name}</p>
-                  <p className="agent-name">{agent.specialty}</p>
+                  <h3 className="agent-name">Name: {agent.name}</h3> 
+                  <h2 className="agent-name">Specialty: {agent.specialty}</h2>
                 </div>
               </div>
             );

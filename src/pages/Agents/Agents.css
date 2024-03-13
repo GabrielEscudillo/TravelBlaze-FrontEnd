@@ -1,0 +1,47 @@
+.team-title {
+  text-align: center;
+  color: #a4a4a4;
+}
+
+.agent-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
+
+.agent-card {
+  text-align: center;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: rgba(134, 168, 207, 0.8); /* Color de fondo con opacidad */
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3),
+    /* Sombra más oscura y menos difusa */ 0 15px 15px rgba(255, 255, 255, 0.2),
+    /* Sombra más clara y menos difusa */ 0 0 0 10px rgba(255, 255, 255, 0.1); /* Sombra adicional para efecto 3D reducido */
+
+}
+
+.agent-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.agent-info {
+  display: flex;
+  justify-content: center;
+  color: #050505;
+  flex-direction: column;
+}
+
+.agent-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.no-agents {
+  text-align: center;
+}
+

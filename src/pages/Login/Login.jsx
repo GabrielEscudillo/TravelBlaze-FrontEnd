@@ -7,6 +7,9 @@ import { login, userData } from "../userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import "./Login.css";
+import { FaEnvelope } from 'react-icons/fa';
+import { BiLock } from 'react-icons/bi';
+
 
 export const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -73,7 +76,7 @@ export const Login = () => {
             <h1>Welcome to TravelBlaze</h1>
             <Form className="w-100" id="logInBox">
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <LoginInput
+              <FaEnvelope /> <LoginInput
                   type={"email"}
                   name={"email"}
                   handler={inputHandler}
@@ -83,7 +86,7 @@ export const Login = () => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
-                <LoginInput
+              <BiLock /> <LoginInput
                   type={"password"}
                   name={"password"}
                   handler={inputHandler}

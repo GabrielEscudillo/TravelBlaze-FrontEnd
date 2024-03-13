@@ -19,7 +19,7 @@
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3),
     /* Sombra más oscura y menos difusa */ 0 15px 15px rgba(255, 255, 255, 0.2),
     /* Sombra más clara y menos difusa */ 0 0 0 10px rgba(255, 255, 255, 0.1); /* Sombra adicional para efecto 3D reducido */
-
+    margin-top: 6%;
 }
 
 .agent-img {
@@ -43,5 +43,9 @@
 
 .no-agents {
   text-align: center;
+}
+
+.agent-body {
+    height: 75vh;
 }
 

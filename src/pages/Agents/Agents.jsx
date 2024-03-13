@@ -16,6 +16,8 @@ export const Agents = () => {
   return (
     <>
       <h1 className="team-title">Meet our team</h1>
+      <div className="agent-body">
+
       <div className="agent-container">
         {agents && agents.length > 0 ? (
           agents.map((agent) => {
@@ -31,12 +33,18 @@ export const Agents = () => {
                   <h2 className="agent-name">Specialty: {agent.specialty}</h2>
                 </div>
               </div>
+              
             );
+            
           })
+          
         ) : (
           <p className="no-agents">No hay agentas para mostrar.</p>
         )}
       </div>
+      </div>
+
     </>
+
   );
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { bringAllUsers, removeUser } from "../../Services/apiCalls";
 import { useSelector } from "react-redux";
-import { Button, Card } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { userData } from "../userSlice";
 
 export const AllUsers = () => {
@@ -16,28 +16,40 @@ export const AllUsers = () => {
       });
     }
   }, []);
-  console.log(users)
 
   const removeButtonHandler = (id) => {
     removeUser(token, id).then(() => {
-      setUsers(users.filter((user) => user.id !== id)); 
+      setUsers(users.filter((user) => user.id !== id));
     });
   };
 
   return (
     <div className="container">
       <h1 className="text-center mt-4 mb-4">All users</h1>
-      <div className="row">
-        {users && users.length > 0 ? (
-          users.map((user) => (
-            <div className="col-md-4 mb-4" key={user.id}>
-              <Card className="shadow-sm appointment-card" id="custom-card">
-                <Card.Body>
-                  <Card.Title>
-                    {user.name} {user.last_name}
-                  </Card.Title>
-                  <Card.Text>{user.email}</Card.Text>
-                  <Card.Text>{user.phone_number}</Card.Text>
+      {users && users.length > 0 ? (
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>ROLE</th>
+              <th>Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.role_name}</td>
+                <td>{user.name}</td>
+                <td>{user.last_name}</td>
+                <td>{user.email}</td>
+                <td>{user.phone_number}</td>
+
+                <td>
                   <Button
                     variant="danger"
                     size="sm"
@@ -45,14 +57,14 @@ export const AllUsers = () => {
                   >
                     Delete
                   </Button>
-                </Card.Body>
-              </Card>
-            </div>
-          ))
-        ) : (
-          <p>No hay usuarios para mostrar.</p>
-        )}
-      </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      ) : (
+        <p>No hay usuarios para mostrar.</p>
+      )}
     </div>
   );
 };

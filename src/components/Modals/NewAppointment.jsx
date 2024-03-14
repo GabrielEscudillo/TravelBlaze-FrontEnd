@@ -72,9 +72,6 @@ export const NewAppointment = ({ showModal, setShowModal }) => {
       return;
     }
   
-
-
-
     createAppointment(token, newAppointment)
       .then((res) => {
         console.log(res);

@@ -27,15 +27,15 @@ export const AllUsers = () => {
     <div className="container">
       <h1 className="text-center mt-4 mb-4">All users</h1>
       {users && users.length > 0 ? (
-        <Table striped bordered hover>
+        <Table striped bordered hover responsive>
           <thead>
             <tr>
               <th>ID</th>
               <th>ROLE</th>
               <th>Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Phone Number</th>
+              <th className="d-none d-md-table-cell">Last Name</th>
+              <th className="d-none d-md-table-cell">Email</th>
+              <th className="d-none d-md-table-cell">Phone Number</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -45,9 +45,9 @@ export const AllUsers = () => {
                 <td>{user.id}</td>
                 <td>{user.role_name}</td>
                 <td>{user.name}</td>
-                <td>{user.last_name}</td>
-                <td>{user.email}</td>
-                <td>{user.phone_number}</td>
+                <td className="d-none d-md-table-cell">{user.last_name}</td>
+                <td className="d-none d-md-table-cell">{user.email}</td>
+                <td className="d-none d-md-table-cell">{user.phone_number}</td>
 
                 <td>
                   <Button

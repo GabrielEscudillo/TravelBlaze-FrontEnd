@@ -1,6 +1,9 @@
 .team-title {
   text-align: center;
   color: #a4a4a4;
+  margin-top: 5%;
+  font-family: "Bree Serif", serif;
+
 }
 
 .agent-container {
@@ -15,10 +18,10 @@
   padding: 20px;
   margin: 10px;
   border-radius: 10px;
-  background-color: rgba(134, 168, 207, 0.8); /* Color de fondo con opacidad */
+  background-color: rgba(134, 168, 207, 0.8); 
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3),
-    /* Sombra más oscura y menos difusa */ 0 15px 15px rgba(255, 255, 255, 0.2),
-    /* Sombra más clara y menos difusa */ 0 0 0 10px rgba(255, 255, 255, 0.1); /* Sombra adicional para efecto 3D reducido */
+ 0 15px 15px rgba(255, 255, 255, 0.2),
+0 0 0 10px rgba(255, 255, 255, 0.1); 
     margin-top: 6%;
 }
 
@@ -34,6 +37,8 @@
   justify-content: center;
   color: #050505;
   flex-direction: column;
+  font-family: "Bree Serif", serif;
+
 }
 
 .agent-name {

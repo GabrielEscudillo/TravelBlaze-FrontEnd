@@ -18,6 +18,8 @@ import {
   updateProfile,
 } from "../../Services/apiCalls";
 import { NewAppointment } from "../../Components/Modals/NewAppointment";
+import "./Profile.css";
+
 
 export const Profile = () => {
   const [profileData, setProfileData] = useState({});
@@ -94,7 +96,7 @@ export const Profile = () => {
 
   const handleSaveAppointment = (index) => {
     const appointment = myAppointments[index];
-    const { id, date, time } = appointment;
+    const { id, date, time, service } = appointment;
     updateAppointment(token, id, { date, time })
       .then((updatedAppointment) => {
         const updatedAppointments = [...myAppointments];
@@ -121,16 +123,17 @@ export const Profile = () => {
   };
 
   return (
-    <>
+    <div className="profileBody">
     <div className="body">
       {!!profileData.phone_number ? (
-        <Container className="mt-5">
-          <Card.Title className="profile-card-title">
+        <Container className="mt-3">
+
+          <Row className="justify-content-center">
+            <Col md={6} className="mt-md-5">
+              <Card className="profile-card">
+              <Card.Title className="profile-card-title">
             Welcome {profileData.name} {profileData.last_name}
           </Card.Title>
-          <Row className="justify-content-center">
-            <Col md={6} className="mt-md-4">
-              <Card className="profile-card">
                 <Card.Body>
                   <Button
                     variant="primary"
@@ -219,14 +222,16 @@ export const Profile = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={3} className="mt-md-4">
-              <Card className="profile-card">
-                <Card.Body>
+            <Col md={3} className="mt-md-4 mobile-margin-top">              <Card className="appointment-Card" >
+                <Card.Body className="newAppointment">
+                <Card.Img variant="top" src="https://i.pinimg.com/564x/33/85/ee/3385ee65676343e4ad42afb9c450a598.jpg" />
+
+                  <div>Ready for your next adventure?</div>
                   <Button
                     variant="primary"
                     onClick={() => setShowModal(true)}
                   >
-                    Crear Cita
+                    Schedule an appointment
                   </Button>
                   <NewAppointment
                     showModal={showModal}
@@ -242,14 +247,16 @@ export const Profile = () => {
       )}
     </div>
       {myAppointments.length > 0 && (
-        <Container className="mt-5">
-          <h3 className="text-center mb-4">Next Sessions</h3>
-          <Row xs={1} md={2} lg={3} className="g-4">
+        <Container className="mt-5" id="appointment-box">
+          <h3 className="text-center mb-4">MY APPOINTMENTS</h3>
+          <Row xs={1} md={2} lg={2} className="g-5">
             {myAppointments.map((appointment, index) => (
               <Col key={index}>
                 <Card className="h-100" id="custom-card-profile">
                   <Card.Body>
                     <Card.Title>Agent: {appointment.agent.name}</Card.Title>
+                    <Card.Title>Service: {appointment.service.service_name}</Card.Title>
+
                     <Card.Text>
                       <span className="font-weight-bold">Date:</span>{" "}
                       {appointment.editable ? (
@@ -287,6 +294,7 @@ export const Profile = () => {
                         appointment.time
                       )}
                     </Card.Text>
+                    <div className="buttons">
                     <Button
                       variant="primary"
                       onClick={() => {
@@ -305,6 +313,7 @@ export const Profile = () => {
                     >
                       Cancel
                     </Button>
+                    </div>
                   </Card.Body>
                 </Card>
               </Col>
@@ -312,6 +321,6 @@ export const Profile = () => {
           </Row>
         </Container>
       )}
-    </>
+    </div>
   );
 };

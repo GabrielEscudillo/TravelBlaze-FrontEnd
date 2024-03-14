@@ -9,8 +9,6 @@ import { userData } from "../../Pages/userSlice";
 export const NewAppointment = ({ showModal, setShowModal }) => {
   const userRdxData = useSelector(userData);
   const myId = userRdxData.credentials.userData.userId;
-  const horaApertura = "09:00";
-
   const [newAppointment, setNewAppointment] = useState({
     user_id: myId,
     agent_id: "",
@@ -74,6 +72,9 @@ export const NewAppointment = ({ showModal, setShowModal }) => {
       return;
     }
   
+
+
+
     createAppointment(token, newAppointment)
       .then((res) => {
         console.log(res);
@@ -157,9 +158,8 @@ export const NewAppointment = ({ showModal, setShowModal }) => {
               type="time"
               name="time"
               value={newAppointment.time}
-              min="09:00"
-              max="18:00"
               onChange={inputHandler}
+              
             />
           </Form.Group>
           {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}

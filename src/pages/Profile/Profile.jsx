@@ -20,7 +20,6 @@ import {
 import { NewAppointment } from "../../Components/Modals/NewAppointment";
 import "./Profile.css";
 
-
 export const Profile = () => {
   const [profileData, setProfileData] = useState({});
   const userRdxData = useSelector(userData);
@@ -32,6 +31,11 @@ export const Profile = () => {
   const [myAppointments, setMyAppointments] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [originalAppointment, setOriginalAppointment] = useState(null);
+  const [originalData, setOriginalData] = useState(profileData);
+
+  const today = new Date();
+  const date = today.toISOString().split("T")[0];
 
   useEffect(() => {
     bringProfile(token, myId).then((res) => {
@@ -69,7 +73,6 @@ export const Profile = () => {
         }, 5000); // Aquí puedes ajustar el tiempo que quieres que el mensaje se muestre, en milisegundos
         return;
       }
-  
       updateProfile(token, myId, editableData)
         .then((updatedProfile) => {
           setProfileData(updatedProfile);
@@ -80,6 +83,8 @@ export const Profile = () => {
           console.error("Error updating profile:", error);
         });
     } else {
+      // Antes de entrar en el modo de edición, guarda los datos originales
+      setOriginalData({ ...editableData });
       setEditMode(true);
     }
   };
@@ -90,13 +95,28 @@ export const Profile = () => {
 
   const handleEditAppointment = (index) => {
     const appointmentsCopy = [...myAppointments];
+    setOriginalAppointment({ ...appointmentsCopy[index] });
     appointmentsCopy[index].editable = true;
     setMyAppointments(appointmentsCopy);
   };
 
+  const handleCancelEditData = () => {
+    setProfileData(originalData);
+    setEditMode(false);
+  };
+
+  const handleCancelEdit = (index) => {
+    const appointmentsCopy = [...myAppointments];
+    if (originalAppointment) {
+      appointmentsCopy[index] = originalAppointment;
+      setMyAppointments(appointmentsCopy);
+      setOriginalAppointment(null);
+    }
+  };
+
   const handleSaveAppointment = (index) => {
     const appointment = myAppointments[index];
-    const { id, date, time, service } = appointment;
+    const { id, date, time } = appointment;
     updateAppointment(token, id, { date, time })
       .then((updatedAppointment) => {
         const updatedAppointments = [...myAppointments];
@@ -124,138 +144,155 @@ export const Profile = () => {
 
   return (
     <div className="profileBody">
-    <div className="body">
-      {!!profileData.phone_number ? (
-        <Container className="mt-3">
-
-          <Row className="justify-content-center">
-            <Col md={6} className="mt-md-5">
-              <Card className="profile-card">
-              <Card.Title className="profile-card-title">
-            Welcome {profileData.name} {profileData.last_name}
-          </Card.Title>
-                <Card.Body>
-                  <Button
-                    variant="primary"
-                    className="view-details-button"
-                    onClick={toggleDetails}
-                  >
-                    {detailsOpen ? "Hide details" : "View details"}
-                  </Button>
-                  {detailsOpen && (
-                    <>
-                      <ul className="list-group list-group-flush">
-                        <li className="list-group-item">
-                          Name:{" "}
-                          {editMode ? (
-                            <Form.Control
-                              type="text"
-                              name="name"
-                              value={editableData.name}
-                              onChange={inputHandler}
-                            />
-                          ) : (
-                            profileData.name
-                          )}
-                        </li>
-                        <li className="list-group-item">
-                          Last Name:{" "}
-                          {editMode ? (
-                            <Form.Control
-                              type="text"
-                              name="last_name"
-                              value={editableData.last_name}
-                              onChange={inputHandler}
-                            />
-                          ) : (
-                            profileData.last_name
-                          )}
-                        </li>
-                        <li className="list-group-item">
-                          Email: {profileData.email}
-                        </li>
-                        <li className="list-group-item">
-                          Phone number:{" "}
-                          {editMode ? (
-                            <Form.Control
-                              type="text"
-                              name="phone_number"
-                              value={editableData.phone_number}
-                              onChange={inputHandler}
-                            />
-                          ) : (
-                            profileData.phone_number
-                          )}
-                        </li>
-                        <li className="list-group-item">
-                          Address:{" "}
-                          {editMode ? (
-                            <Form.Control
-                              type="text"
-                              name="address"
-                              value={editableData.address}
-                              onChange={inputHandler}
-                            />
-                          ) : (
-                            profileData.address
-                          )}
-                        </li>
-                      </ul>
-                      {showError && (
-                        <Alert
-                          variant="danger"
-                          onClose={() => setShowError(false)}
-                          dismissible
+      <div className="body">
+        {!!profileData.phone_number ? (
+          <Container className="mt-5">
+            <Row className="justify-content-center">
+              <Col md={6} className="mt-md-4">
+                <Card className="profile-card">
+                  <Card.Title className="profile-card-title">
+                    Welcome {profileData.name} {profileData.last_name}
+                  </Card.Title>
+                  <Card.Body>
+                    <Button
+                      variant="primary"
+                      className="view-details-button"
+                      onClick={toggleDetails}
+                    >
+                      {detailsOpen ? "Hide details" : "View details"}
+                    </Button>
+                    {detailsOpen && (
+                      <>
+                        <ul className="list-group list-group-flush">
+                          <li className="list-group-item">
+                            Name:{" "}
+                            {editMode ? (
+                              <Form.Control
+                                type="text"
+                                name="name"
+                                value={editableData.name}
+                                onChange={inputHandler}
+                              />
+                            ) : (
+                              profileData.name
+                            )}
+                          </li>
+                          <li className="list-group-item">
+                            Last Name:{" "}
+                            {editMode ? (
+                              <Form.Control
+                                type="text"
+                                name="last_name"
+                                value={editableData.last_name}
+                                onChange={inputHandler}
+                              />
+                            ) : (
+                              profileData.last_name
+                            )}
+                          </li>
+                          <li className="list-group-item">
+                            Email: {profileData.email}
+                          </li>
+                          <li className="list-group-item">
+                            Phone number:{" "}
+                            {editMode ? (
+                              <Form.Control
+                                type="text"
+                                name="phone_number"
+                                value={editableData.phone_number}
+                                onChange={inputHandler}
+                              />
+                            ) : (
+                              profileData.phone_number
+                            )}
+                          </li>
+                          <li className="list-group-item">
+                            Address:{" "}
+                            {editMode ? (
+                              <Form.Control
+                                type="text"
+                                name="address"
+                                value={editableData.address}
+                                onChange={inputHandler}
+                              />
+                            ) : (
+                              profileData.address
+                            )}
+                          </li>
+                        </ul>
+                        {showError && (
+                          <Alert
+                            variant="danger"
+                            onClose={() => setShowError(false)}
+                            dismissible
+                          >
+                            Please fill in all fields
+                          </Alert>
+                        )}
+                        <Button
+                          variant="primary"
+                          className="mt-3"
+                          onClick={buttonHandler}
                         >
-                          Please fill in all fields
-                        </Alert>
-                      )}
-                      <Button
-                        variant="primary"
-                        className="mt-3"
-                        onClick={buttonHandler}
-                      >
-                        {editMode ? "Save" : "Update details"}
-                      </Button>
-                    </>
-                  )}
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={3} className="mt-md-4 mobile-margin-top">              <Card className="appointment-Card" >
-                <Card.Body className="newAppointment">
-                <Card.Img variant="top" src="https://i.pinimg.com/564x/33/85/ee/3385ee65676343e4ad42afb9c450a598.jpg" />
+                          {editMode ? "Save" : "Update details"}
+                        </Button>
+                        {editMode && (
+                          <Button
+                            variant="secondary"
+                            className="mt-3"
+                            onClick={handleCancelEditData}
+                          >
+                            Cancel Edit
+                          </Button>
+                        )}
+                      </>
+                    )}
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col md={3} className="mt-md-4 mobile-margin-top">
+                {" "}
+                <Card className="appointment-Card">
+                  <Card.Body className="newAppointment">
+                    <Card.Img
+                      variant="top"
+                      src="https://i.pinimg.com/564x/33/85/ee/3385ee65676343e4ad42afb9c450a598.jpg"
+                    />
 
-                  <div>Ready for your next adventure?</div>
-                  <Button
-                    variant="primary"
-                    onClick={() => setShowModal(true)}
-                  >
-                    Schedule an appointment
-                  </Button>
-                  <NewAppointment
-                    showModal={showModal}
-                    setShowModal={setShowModal}
-                  />
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      ) : (
-        <p>Cargando datos de perfil...</p>
-      )}
-    </div>
+                    <div>Ready for your next adventure?</div>
+                    <Button
+                      variant="primary"
+                      onClick={() => setShowModal(true)}
+                    >
+                      Schedule an appointment
+                    </Button>
+                    <NewAppointment
+                      showModal={showModal}
+                      setShowModal={setShowModal}
+                    />
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
+          </Container>
+        ) : (
+          <p>Cargando datos de perfil...</p>
+        )}
+      </div>
       {myAppointments.length > 0 && (
         <Container className="mt-5" id="appointment-box">
           <h3 className="text-center mb-4">MY APPOINTMENTS</h3>
-          <Row xs={1} md={2} lg={2} className="g-5">
+          <Row xs={1} md={2} lg={3} className="g-5">
+            {" "}
             {myAppointments.map((appointment, index) => (
               <Col key={index}>
                 <Card className="h-100" id="custom-card-profile">
+                  {" "}
                   <Card.Body>
                     <Card.Title>Agent: {appointment.agent.name}</Card.Title>
-                    <Card.Title>Service: {appointment.service.service_name}</Card.Title>
+                    <Card.Title>
+                      Service: {appointment.service.service_name}
+                    </Card.Title>
 
                     <Card.Text>
                       <span className="font-weight-bold">Date:</span>{" "}
@@ -263,6 +300,7 @@ export const Profile = () => {
                         <Form.Control
                           type="date"
                           value={appointment.date}
+                          min={date}
                           onChange={(e) => {
                             const value = e.target.value;
                             setMyAppointments((prevAppointments) =>
@@ -295,24 +333,32 @@ export const Profile = () => {
                       )}
                     </Card.Text>
                     <div className="buttons">
-                    <Button
-                      variant="primary"
-                      onClick={() => {
-                        if (appointment.editable) {
-                          handleSaveAppointment(index);
-                        } else {
-                          handleEditAppointment(index);
-                        }
-                      }}
-                    >
-                      {appointment.editable ? "Save" : "Reschedule"}
-                    </Button>
-                    <Button
-                      variant="danger"
-                      onClick={() => cancelButtonHandler(appointment.id)}
-                    >
-                      Cancel
-                    </Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => {
+                          if (appointment.editable) {
+                            handleSaveAppointment(index);
+                          } else {
+                            handleEditAppointment(index);
+                          }
+                        }}
+                      >
+                        {appointment.editable ? "Save" : "Reschedule"}
+                      </Button>
+                      {appointment.editable && (
+                        <Button
+                          variant="secondary"
+                          onClick={() => handleCancelEdit(index)}
+                        >
+                          Cancel Edit
+                        </Button>
+                      )}
+                      <Button
+                        variant="danger"
+                        onClick={() => cancelButtonHandler(appointment.id)}
+                      >
+                        Cancel
+                      </Button>
                     </div>
                   </Card.Body>
                 </Card>

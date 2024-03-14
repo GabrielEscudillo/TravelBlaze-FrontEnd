@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { createAppointment, bringAllAgents, bringAllServices } from "../../Services/apiCalls"; 
 import { jwtDecode } from "jwt-decode";
 import { userData } from "../../Pages/userSlice";
@@ -9,6 +9,8 @@ import { userData } from "../../Pages/userSlice";
 export const NewAppointment = ({ showModal, setShowModal }) => {
   const userRdxData = useSelector(userData);
   const myId = userRdxData.credentials.userData.userId;
+  const horaApertura = "09:00";
+
   const [newAppointment, setNewAppointment] = useState({
     user_id: myId,
     agent_id: "",
@@ -20,6 +22,9 @@ export const NewAppointment = ({ showModal, setShowModal }) => {
   const [services, setServices] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+
+  const today = new Date();
+  const date = today.toISOString().split('T')[0];
   
   useEffect(() => {
     if (agents.length === 0) {
@@ -79,12 +84,11 @@ export const NewAppointment = ({ showModal, setShowModal }) => {
         };
         setSuccessMessage("Appointment successfully created.");
         setTimeout(() => {
-          setSuccessMessage(""); // Limpiar el mensaje después de 2 segundos
-          setShowModal(false); // Cerrar el modal después de limpiar el mensaje de éxito
+          setSuccessMessage(""); 
+          setShowModal(false); 
           navigate("/profile");
         }, 1000);
   
-        // Restablecer los valores de newAppointment después de crear la cita
         setNewAppointment({
           user_id: myId,
           agent_id: "",
@@ -143,6 +147,7 @@ export const NewAppointment = ({ showModal, setShowModal }) => {
               type="date"
               name="date"
               value={newAppointment.date}
+              min={date}
               onChange={inputHandler}
             />
           </Form.Group>
@@ -152,6 +157,8 @@ export const NewAppointment = ({ showModal, setShowModal }) => {
               type="time"
               name="time"
               value={newAppointment.time}
+              min="09:00"
+              max="18:00"
               onChange={inputHandler}
             />
           </Form.Group>

@@ -12,6 +12,7 @@ import { NewAgent } from "./NewAgent/NewAgent";
 import { NewBooking } from "./NewBooking/NewBooking";
 import { AgentAppointments } from "./AgentAppointments/AgentAppointments";
 import "./Body.css"
+import { Destinations } from "./Destinations/Destinations";
 
 export const Body = () => {
     return (
@@ -30,6 +31,7 @@ export const Body = () => {
                 <Route path="/newagent" element={<NewAgent/>} />
                 <Route path="/newbooking" element={<NewBooking/>} />
                 <Route path="/myappointments" element={<AgentAppointments/>} />
+                <Route path="/destinations" element={<Destinations/>} />
 
             </Routes>
         </>

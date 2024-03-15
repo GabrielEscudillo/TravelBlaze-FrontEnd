@@ -1,5 +1,7 @@
 import "./Home.css";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { FaGlobe, FaPlane } from "react-icons/fa"; // Importamos iconos de react-icons
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
@@ -12,9 +14,9 @@ export const Home = () => {
               Embark on an unforgettable journey with our agency and experience
               the wonders of the world like never before. Let us guide you to
               the most breathtaking destinations, where adventure awaits at
-              every turn.
+              every turn. <FaGlobe /> <FaPlane />
             </p>
-            <Button variant="primary" size="lg">
+            <Button as={Link} to="/destinations" variant="primary" size="lg">
               Explore Destinations
             </Button>
           </Col>
@@ -41,7 +43,7 @@ export const Home = () => {
                 <Card.Text>
                   Escape to paradise and feel the warmth of the sun on your skin
                   as you lounge on pristine beaches and swim in crystal-clear
-                  waters.
+                  waters.🏖️🌞
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -56,7 +58,7 @@ export const Home = () => {
                 <Card.Title>Mountain Destinations</Card.Title>
                 <Card.Text>
                   Feel the rush of adrenaline as you conquer majestic peaks and
-                  marvel at breathtaking vistas in our mountain getaways.
+                  marvel at breathtaking vistas in our mountain getaways. ⛰️😍
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -72,7 +74,7 @@ export const Home = () => {
                 <Card.Text>
                   Immerse yourself in the vibrant culture and bustling energy of
                   the world's most exciting cities, where every corner holds a
-                  new adventure.
+                  new adventure. 🏙️🎉
                 </Card.Text>
               </Card.Body>
             </Card>

@@ -37,12 +37,12 @@ export const AllAppointments = () => {
             <Col key={`${appointment.id}`}>
               <Card className="shadow-sm appointment-card" id="custom-card">
                 <Card.Body>
-                  <Card.Title className="text-center fs-5">Artist: {appointment.artist_name}</Card.Title>
+                  <Card.Title className="text-center fs-5">Artist: {appointment.agent.user.name}</Card.Title>
                   <hr />
                   <div className="text-center">
                     <p><strong>Date:</strong> {appointment.date}</p>
                     <p><strong>Time:</strong> {appointment.time}</p>
-                    <p><strong>Customer:</strong> {appointment.user_name} {appointment.user_last_name}</p>
+                    <p><strong>Customer:</strong> {appointment.user.name} {appointment.user.last_name}</p>
                   </div>
                   <Button variant="danger" size="sm" onClick={() => removeButtonHandler(appointment.id)}>Delete</Button>
                 </Card.Body>

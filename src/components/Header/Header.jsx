@@ -45,10 +45,10 @@ export const Header = () => {
             <Nav.Link as={Link} to="/agents">
               Agents
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/destinations">
               Destinations
             </Nav.Link>
-            <Nav.Link as={Link} to="/destinations">
+            <Nav.Link as={Link} to="/contact">
               Contact
             </Nav.Link>
           </Nav>

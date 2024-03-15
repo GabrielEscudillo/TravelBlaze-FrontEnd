@@ -10,9 +10,9 @@ export const Footer = () => {
         <Row>
           <Col md={4} className="text-center">
             <h5>Contact Us</h5>
-            <p>123 Travel Street</p>
-            <p>Travel City, TC 12345</p>
-            <p>info@example.com</p>
+            <p>8th Robin Lane</p>
+            <p>Rockland, Ma 02370</p>
+            <p>info@travelblaze.com</p>
           </Col>
           <Col md={4} className="text-center">
             <h5>Follow Us</h5>

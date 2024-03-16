@@ -60,30 +60,28 @@ export const Profile = () => {
 
   const buttonHandler = () => {
     if (editMode) {
-      // verificar si estan completados los campos
       if (
         !editableData.name ||
         !editableData.last_name ||
         !editableData.address ||
         !editableData.phone_number
       ) {
-        setShowError(true); // muestra el mensaje de error
+        setShowError(true); 
         setTimeout(() => {
           setShowError(false);
-        }, 5000); // Aquí puedes ajustar el tiempo que quieres que el mensaje se muestre, en milisegundos
+        }, 5000); 
         return;
       }
       updateProfile(token, myId, editableData)
         .then((updatedProfile) => {
           setProfileData(updatedProfile);
           setEditMode(false);
-          window.location.reload(); // Recargar
+          window.location.reload(); 
         })
         .catch((error) => {
           console.error("Error updating profile:", error);
         });
     } else {
-      // Antes de entrar en el modo de edición, guarda los datos originales
       setOriginalData({ ...editableData });
       setEditMode(true);
     }
@@ -250,8 +248,7 @@ export const Profile = () => {
                   </Card.Body>
                 </Card>
               </Col>
-              <Col md={3} className="mt-md-4 mobile-margin-top">
-                {" "}
+<Col md={3} className="mt-md-4 mb-5 mobile-margin-top">                {" "}
                 <Card className="appointment-Card">
                   <Card.Body className="newAppointment">
                     <Card.Img

@@ -116,9 +116,24 @@ export const Login = () => {
                   iconClass={"bi bi-lock"}
                 />
               </Form.Group>
+              {showError && (
+                <Alert
+                  variant="danger"
+                  onClose={() => setShowError(false)}
+                  dismissible
+                >
+                  Email and password are required
+                </Alert>
+                
+              )}
               <Button variant="primary" onClick={buttonHandler} block="true">
                 Log In
               </Button>
+              {loginError && (
+              <Alert variant="danger" className="mt-3">
+               Wrong email or password
+              </Alert>
+            )}
             </Form>
             <p className="mt-3 text-center">
               Don't have an account? <a href="/register">Sign Up</a>

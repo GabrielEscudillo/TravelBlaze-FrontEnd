@@ -7,9 +7,8 @@ import { login, userData } from "../userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import "./Login.css";
-import { FaEnvelope } from 'react-icons/fa';
-import { BiLock } from 'react-icons/bi';
-
+import { FaEnvelope } from "react-icons/fa";
+import { BiLock } from "react-icons/bi";
 
 export const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -67,16 +66,38 @@ export const Login = () => {
   };
 
   return (
-    <Container id="loginBody" className="d-flex justify-content-center mt-5"style={{ maxWidth: "500px", margin: "auto"}}>
+    <Container id="loginBody" className="d-flex justify-content-center mt-5">
       <Row className="mb-2">
-        <Col xs={12} md={8} lg={12} className="mx-auto">
-          {" "}
-          {/* Añadida la clase mx-auto */}
+        <Col xs={12} md={6} className="mx-auto">
+          <div className="text-center">
+            <img
+              src="https://i.pinimg.com/originals/68/0b/eb/680beb29a683b6624393df56ac23e9bf.gif"
+              alt="Travel Image"
+              className="mt-4 img-fluid"
+              style={{
+                maxWidth: "400px",
+                width: "100%",
+                boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.2)",
+                borderRadius: "10px",
+              }}
+            />
+            <p>Adventure awaits beyond the horizon.</p>{" "}
+          </div>
+        </Col>
+        <Col
+          xs={12}
+          md={6}
+          className="mx-auto d-flex flex-column justify-content-center align-items-center mb-5"
+        >
           <div className="logInBox-name">
-            <h1>Welcome to TravelBlaze</h1>
-            <Form className="w-100" id="logInBox">
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-              <FaEnvelope /> <LoginInput
+            <h1 className="text-center">Welcome to TravelBlaze</h1>
+            <Form
+              className="w-100 d-flex flex-column justify-content-center align-items-center"
+              id="logInBox"
+            >
+              <Form.Group className="mb-2" controlId="formBasicEmail">
+                <FaEnvelope />
+                <LoginInput
                   type={"email"}
                   name={"email"}
                   handler={inputHandler}
@@ -86,7 +107,8 @@ export const Login = () => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
-              <BiLock /> <LoginInput
+                <BiLock />
+                <LoginInput
                   type={"password"}
                   name={"password"}
                   handler={inputHandler}
@@ -94,27 +116,12 @@ export const Login = () => {
                   iconClass={"bi bi-lock"}
                 />
               </Form.Group>
-              {showError && (
-                <Alert
-                  variant="danger"
-                  onClose={() => setShowError(false)}
-                  dismissible
-                >
-                  Por favor ingresa tu correo electrónico y contraseña
-                </Alert>
-              )}
               <Button variant="primary" onClick={buttonHandler} block="true">
-                Iniciar sesión
+                Log In
               </Button>
             </Form>
-            {loginError && (
-              <Alert variant="danger" className="mt-3">
-                Correo electrónico o contraseña incorrectos. Por favor,
-                inténtalo de nuevo.
-              </Alert>
-            )}
-            <p className="mt-3">
-              ¿No tienes una cuenta? <a href="/register">Regístrate</a>
+            <p className="mt-3 text-center">
+              Don't have an account? <a href="/register">Sign Up</a>
             </p>
           </div>
         </Col>

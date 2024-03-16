@@ -50,7 +50,6 @@ export const CruiseTab = () => {
       console.error("Error while creating booking:", error);
     }
   };
-  console.log(event.target.value);
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formUserId">

@@ -27,7 +27,7 @@ export const AgentAppointments = () => {
           .sort((a, b) => new Date(a.date) - new Date(b.date))
           .map((appointment, index) => (
             <Col key={index} className="mb-3">
-              <Card className="shadow-sm custom-appointment-card">
+              <Card className="shadow-sm appointment-card">
                 <Card.Body>
                   <Card.Title className="text-center fs-4">
                     {appointment.user.name} {appointment.user.last_name}

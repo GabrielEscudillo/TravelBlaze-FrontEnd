@@ -192,7 +192,6 @@ export const Register = () => {
               </Col>
             </Row>
 
-            {/* Mensaje de error si no han completado todos los campos */}
             {showError && (
               <Alert
                 variant="danger"

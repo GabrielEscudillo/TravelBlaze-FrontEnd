@@ -40,7 +40,7 @@ export const Contact = () => {
               <Form.Label>Message</Form.Label>
               <Form.Control as="textarea" rows={3} placeholder="Enter your message" />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" className="mt-3">
               Submit
             </Button>
           </Form>

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { createBooking } from "../../Services/apiCalls";
+import { BsArrowRight, BsBoxArrowInUpRight, BsCalendar, BsFillAirplaneFill, BsFillPersonFill, BsFillPinMapFill } from "react-icons/bs";
+import { FaCalendarMinus, FaCalendarPlus, FaHotel, FaMapMarkerAlt, FaMoneyBillAlt, FaUsers } from "react-icons/fa";
 
 export const FlightAndHotelTab = () => {
   const [bookingInfo, setBookingInfo] = useState({
@@ -64,10 +66,10 @@ export const FlightAndHotelTab = () => {
   };
   return (
     <Form onSubmit={handleSubmit}>
-      <Row className="mb-3">
+      <Row className="mb-1">
         <Col xs={12} sm={6}>
           <Form.Group controlId="formUserId">
-            <Form.Label>User ID</Form.Label>
+            <Form.Label><BsFillPersonFill /> User ID</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter User ID"
@@ -79,7 +81,7 @@ export const FlightAndHotelTab = () => {
         </Col>
         <Col xs={12} sm={6}>
           <Form.Group controlId="formDateOfPurchase">
-            <Form.Label>Date of Purchase</Form.Label>
+            <Form.Label><BsCalendar /> Date of Purchase</Form.Label>
             <Form.Control
               type="date"
               name="date_of_purchase"
@@ -90,10 +92,10 @@ export const FlightAndHotelTab = () => {
         </Col>
       </Row>
 
-      <Row className="mb-3">
+      <Row className="mb-1">
         <Col>
           <Form.Group controlId="formPrice">
-            <Form.Label>Price</Form.Label>
+            <Form.Label><FaMoneyBillAlt /> Price</Form.Label>
             <Form.Control
               type="number"
               placeholder="Enter Price"
@@ -105,7 +107,7 @@ export const FlightAndHotelTab = () => {
         </Col>
         <Col>
           <Form.Group controlId="formHotelName">
-            <Form.Label>Hotel:</Form.Label>
+            <Form.Label><FaHotel /> Hotel:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter hotel name"
@@ -117,10 +119,10 @@ export const FlightAndHotelTab = () => {
         </Col>
       </Row>
 
-      <Row className="mb-3">
+      <Row className="mb-1">
         <Col>
           <Form.Group controlId="formAddress">
-            <Form.Label>Address</Form.Label>
+            <Form.Label><FaMapMarkerAlt /> Address</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter Address"
@@ -132,7 +134,7 @@ export const FlightAndHotelTab = () => {
         </Col>
         <Col>
           <Form.Group controlId="formGuests">
-            <Form.Label>Guests</Form.Label>
+            <Form.Label><FaUsers /> Guests</Form.Label>
             <Form.Control
               type="number"
               placeholder="Enter Guests"
@@ -144,10 +146,10 @@ export const FlightAndHotelTab = () => {
         </Col>
       </Row>
 
-      <Row className="mb-3">
+      <Row className="mb-1">
         <Col>
           <Form.Group controlId="formCheckInDate">
-            <Form.Label>Check-in Date</Form.Label>
+            <Form.Label><FaCalendarPlus /> Check-in Date</Form.Label>
             <Form.Control
               type="date"
               placeholder="Enter check in date"
@@ -159,7 +161,7 @@ export const FlightAndHotelTab = () => {
         </Col>
         <Col>
           <Form.Group controlId="formCheckOutDate">
-            <Form.Label>Check-out Date</Form.Label>
+            <Form.Label><FaCalendarMinus /> Check-out Date</Form.Label>
             <Form.Control
               type="date"
               placeholder="Enter Check-out date"
@@ -171,10 +173,10 @@ export const FlightAndHotelTab = () => {
         </Col>
       </Row>
 
-      <Row className="mb-3">
+      <Row className="mb-1">
         <Col>
           <Form.Group controlId="formAirline">
-            <Form.Label>Airline</Form.Label>
+            <Form.Label><BsFillAirplaneFill /> Airline</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter Airline"
@@ -186,7 +188,7 @@ export const FlightAndHotelTab = () => {
         </Col>
         <Col>
           <Form.Group controlId="formFlightNumber">
-            <Form.Label>Flight Number</Form.Label>
+            <Form.Label><BsFillAirplaneFill /> Flight Number</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter Flight Number"
@@ -198,10 +200,10 @@ export const FlightAndHotelTab = () => {
         </Col>
       </Row>
 
-      <Row className="mb-3">
+      <Row className="mb-1">
         <Col>
           <Form.Group controlId="formDeparture">
-            <Form.Label>Departure</Form.Label>
+            <Form.Label><BsBoxArrowInUpRight /> Departure</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter Departure"
@@ -213,7 +215,7 @@ export const FlightAndHotelTab = () => {
         </Col>
         <Col>
           <Form.Group controlId="formDestination">
-            <Form.Label>Destination</Form.Label>
+            <Form.Label><BsFillPinMapFill /> Destination</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter Destination"
@@ -225,10 +227,10 @@ export const FlightAndHotelTab = () => {
         </Col>
       </Row>
 
-      <Row className="mb-3">
+      <Row className="mb-1">
         <Col>
           <Form.Group controlId="formDate_of_departure">
-            <Form.Label>Date of Departure</Form.Label>
+            <Form.Label><BsCalendar /> Date of Departure</Form.Label>
             <Form.Control
               type="date"
               placeholder="Enter Date of Departure"
@@ -240,7 +242,7 @@ export const FlightAndHotelTab = () => {
         </Col>
         <Col>
           <Form.Group controlId="formDate_of_return">
-            <Form.Label>Date of Return</Form.Label>
+            <Form.Label><BsCalendar /> Date of Return</Form.Label>
             <Form.Control
               type="date"
               placeholder="Enter Date of Return"
@@ -261,8 +263,8 @@ export const FlightAndHotelTab = () => {
             </Alert>
           )}
 
-      <Button variant="primary" type="submit" className="create-booking-btn">
-        Crear Booking
+      <Button variant="primary" type="submit" className="create-booking-btn mt-3">
+      <BsArrowRight /> Crear Booking
       </Button>
     </Form>
   );

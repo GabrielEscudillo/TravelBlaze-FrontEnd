@@ -1,8 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createBooking } from "../../Services/apiCalls";
-import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
-import { BsFillPersonFill, BsCalendar, BsCurrencyDollar, BsArrowRight, BsFillAirplaneFill, BsFillMapFill, BsFillPinMapFill, BsBoxArrowInUpRight } from 'react-icons/bs';
+import { Form, Row, Col, Button, Alert } from "react-bootstrap";
+import {
+  BsFillPersonFill,
+  BsCalendar,
+  BsCurrencyDollar,
+  BsArrowRight,
+  BsFillAirplaneFill,
+  BsFillMapFill,
+  BsFillPinMapFill,
+  BsBoxArrowInUpRight,
+} from "react-icons/bs";
 export const FlightTab = () => {
   const [bookingInfo, setBookingInfo] = useState({
     date_of_purchase: "",
@@ -101,7 +110,7 @@ export const FlightTab = () => {
         <Col md={6}>
           <Form.Group controlId="formAirline">
             <Form.Label>
-            <BsFillAirplaneFill /> Airline
+              <BsFillAirplaneFill /> Airline
             </Form.Label>
             <Form.Control
               type="text"
@@ -112,10 +121,9 @@ export const FlightTab = () => {
             />
           </Form.Group>
         </Col>
-
       </Row>
       <Row>
-      <Col md={6}>
+        <Col md={6}>
           <Form.Group controlId="formDate_of_departure">
             <Form.Label>
               <BsCalendar /> Date of departure
@@ -143,14 +151,12 @@ export const FlightTab = () => {
             />
           </Form.Group>
         </Col>
-
       </Row>
       <Row>
-
         <Col md={6}>
           <Form.Group controlId="formDeparture">
             <Form.Label>
-            <BsBoxArrowInUpRight /> Departure
+              <BsBoxArrowInUpRight /> Departure
             </Form.Label>
             <Form.Control
               type="text"
@@ -161,10 +167,10 @@ export const FlightTab = () => {
             />
           </Form.Group>
         </Col>
-                <Col md={6}>
+        <Col md={6}>
           <Form.Group controlId="formDestination">
             <Form.Label>
-            <BsFillPinMapFill /> Destination
+              <BsFillPinMapFill /> Destination
             </Form.Label>
             <Form.Control
               type="text"
@@ -177,10 +183,11 @@ export const FlightTab = () => {
         </Col>
       </Row>
       <Row>
-      <Col md={6}>
+        <Col md={6}>
           <Form.Group controlId="formFlightNumber">
             <Form.Label>
-            <BsFillAirplaneFill /> Flight Number            </Form.Label>
+              <BsFillAirplaneFill /> Flight Number{" "}
+            </Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter Flight Number"
@@ -190,14 +197,17 @@ export const FlightTab = () => {
             />
           </Form.Group>
         </Col>
-
       </Row>
       {showError && (
         <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
           Please fill in all fields
         </Alert>
       )}
-<Button variant="primary" type="submit" className="create-booking-btn mt-3">
+      <Button
+        variant="primary"
+        type="submit"
+        className="create-booking-btn mt-3"
+      >
         <BsArrowRight /> Crear Booking
       </Button>
     </Form>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createCruise } from "../../Services/apiCalls";
 import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { FaCalendarAlt, FaMapMarkerAlt, FaMoneyBillAlt, FaShip, FaStar, FaUser } from "react-icons/fa";
-import { BsCalendar } from "react-icons/bs";
+import { BsArrowRight, BsCalendar } from "react-icons/bs";
 
 export const CruiseTab = () => {
   const [bookingInfo, setBookingInfo] = useState({
@@ -168,7 +168,7 @@ export const CruiseTab = () => {
       )}
 
       <Button variant="primary" type="submit" className="create-booking-btn mt-3">
-        Crear Booking
+      <BsArrowRight /> Crear Booking
       </Button>
     </Form>
   );

@@ -30,9 +30,10 @@ export const Header = () => {
       expand="lg"
     >
       <Container fluid>
-        <Navbar.Brand as={Link} to="/" className="me-auto">
-          TravelBlaze
-        </Navbar.Brand>
+      <Navbar.Brand as={Link} to="/" className="me-auto">
+  <img src="./../src/assets/logo.svg" alt="TravelBlaze Logo" style={{ height: "40px" }} />
+</Navbar.Brand>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse
           id="basic-navbar-nav"

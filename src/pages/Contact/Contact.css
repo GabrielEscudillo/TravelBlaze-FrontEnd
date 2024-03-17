@@ -1,6 +1,6 @@
 .contact-form{
-border: 2px solid #415061; /* Color del borde */
-border-radius: 15px; /* Borde redondeado */
-box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* Sombra 3D profunda */
-padding: 20px; /* Espaciado interno */
+border: 2px solid #415061;
+border-radius: 15px; 
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+padding: 20px;
 }

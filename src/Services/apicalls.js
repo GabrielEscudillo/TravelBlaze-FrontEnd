@@ -55,15 +55,16 @@ export const bringBookings = async (token, id) => {
   return res.data;
 };
 
-export const bringAllUsers = async (token) => {
+export const bringAllUsers = async (token, page = 1, limit = 5) => {
   const config = {
     headers: {
       Authorization: "Bearer " + token,
     },
   };
-  const res = await axios.get(`${API_URL}/users/get/allusers`, config);
+  const res = await axios.get(`${API_URL}/users/get/allusers?page=${page}&limit=${limit}`, config);
   return res.data;
 };
+
 
 export const removeUser = async (token, id) => {
   const config = {

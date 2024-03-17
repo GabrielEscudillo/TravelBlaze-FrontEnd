@@ -15,12 +15,12 @@ export const AllUsers = () => {
 
   useEffect(() => {
     if (users.length === 0) {
-      bringAllUsers(token, page, limit).then((res) => {
+      bringAllUsers(token).then((res) => {
         setUsers(res.results);
         setTotalPages(Math.ceil(res.count / limit));
       });
     }
-  }, [page, limit]);
+  }, []);
 
   const removeButtonHandler = (id) => {
     removeUser(token, id).then(() => {
@@ -31,6 +31,7 @@ export const AllUsers = () => {
     setPage(page + 1);
     bringAllUsers(token, page + 1, limit).then((res) => {
       setUsers(res.results);
+      
     });
   };
 

@@ -96,14 +96,14 @@ export const removeBooking = async (token, id) => {
   return res.data;
 };
 
-export const bringAllAppointments = async (token) => {
+export const bringAllAppointments = async (token, page = 1, limit = 6) => {
   const config = {
     headers: {
       Authorization: "Bearer " + token,
     },
   };
   const res = await axios.get(
-    `${API_URL}/appointments/allappointments`,
+    `${API_URL}/appointments/allappointments?page=${page}&limit=${limit}`,
     config
   );
   return res.data;

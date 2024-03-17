@@ -7,10 +7,13 @@ import {
 } from "../../Services/apiCalls";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import "./AllAppointments.css";
-import { BsTrash } from "react-icons/bs"; // Importa el icono de la papelera
+import { BsTrash } from "react-icons/bs"; 
 
 export const AllAppointments = () => {
   const [appointments, setAppointments] = useState([]);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(6);
+  const [totalPages, setTotalPages] = useState(1);
   const userRdxData = useSelector(userData);
   const token = userRdxData.credentials.token;
 
@@ -19,6 +22,7 @@ export const AllAppointments = () => {
       bringAllAppointments(token)
         .then((res) => {
           setAppointments(res.results);
+          setTotalPages(Math.ceil(res.count / limit));
         })
         .catch((error) => {
           console.error("Error fetching appointments:", error);
@@ -34,10 +38,26 @@ export const AllAppointments = () => {
     });
   };
 
+  const Next = () => {
+    setPage(page + 1);
+    bringAllAppointments(token, page + 1, limit).then((res) => {
+      setAppointments(res.results);
+    });
+  }
+
+  const Prev = () => {
+    if (page > 1) {
+      setPage(page - 1);
+      bringAllAppointments(token, page - 1, limit).then((res) => {
+        setAppointments(res.results);
+      });
+    }
+  };
+
   return (
     <Container className="mb-5">
       <h1 className="text-center mt-4 mb-4">All Appointments</h1>
-      <Row xs={1} md={2} lg={3} className="g-4">
+      <Row xs={1} md={2} lg={3} className="g-4 mb-4">
         {appointments && appointments.length > 0 ? (
           appointments.map((appointment) => (
             <Col key={appointment.id}>
@@ -57,7 +77,7 @@ export const AllAppointments = () => {
                       size="sm"
                       onClick={() => removeButtonHandler(appointment.id)}
                     >
-                      <BsTrash /> {/* Icono de papelera */}
+                      <BsTrash />
                     </Button>
                   </div>
                   <hr />
@@ -81,12 +101,23 @@ export const AllAppointments = () => {
               </Card>
             </Col>
           ))
+          
         ) : (
           <Col>
             <p className="text-center">No appointments available.</p>
           </Col>
         )}
       </Row>
+      <div className="d-flex justify-content-center mb-5">
+            <Button variant="primary" disabled={page === 1} onClick={Prev}>
+              Prev
+            </Button>
+            {page < totalPages && (
+              <Button className="mx-2" variant="primary" onClick={Next}>
+                Next
+              </Button>
+            )}
+          </div>
     </Container>
   );
 };

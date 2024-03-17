@@ -25,7 +25,7 @@ export const Profile = () => {
   const [profileData, setProfileData] = useState({});
   const userRdxData = useSelector(userData);
   const token = userRdxData.credentials.token;
-  const myId = userRdxData.credentials.userData.userId;
+  const myId = userRdxData.credentials.userData?.userId;
   const [editMode, setEditMode] = useState(false);
   const [editableData, setEditableData] = useState({});
   const [detailsOpen, setDetailsOpen] = useState(false);

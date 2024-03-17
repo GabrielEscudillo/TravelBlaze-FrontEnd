@@ -19,39 +19,44 @@
 
 The aim of this initiative is to create a refined and professional frontend application that seamlessly interacts with our API, specifically engineered to oversee the operational aspects of a travel agency's business model. This application endeavors to provide a comprehensive range of views and functionalities customized for users, agents, and administrators alike.
 
-
 ## Features
 
 <details>
 <summary>User Features</summary>
-🔐 Effortless Registration: Users can easily sign up and input their information to create an account.
+🔐 Seamless Registration: Users can effortlessly register and input their details to set up an account.
 
 <p align="center">
   <img src= "./src/assets/register.png" />
 </p>
 
-🔑 Login: Access your account seamlessly with a user-friendly login process, ensuring quick and convenient access to all features.
+🔑 Login: Easily access your account through a user-friendly login procedure, ensuring swift and convenient access to all functionalities.
 
 <p align="center">
   <img src= "./src/assets/login.png" />
 </p>
 
-📝 User Profile modification: made a mistake while signing up? there's nothing to worry about, users can modify their information by themselves.
+📝 User Profile Editing: Made an error during registration? Fear not, users have the power to seamlessly modify their information at their convenience.
 
 <p align="center">
   <img src= "./src/assets/update.png" />
 </p>
 
-🗓️ Appointment Management: Manage your schedule efficiently with an intuitive appointment system, allowing seamless booking and rescheduling.
+🗓️ Appointment Management: Manage your schedule efficiently with an intuitive appointment system, allowing seamless booking, rescheduling and cancelling.
 
 <p align="center">
   <img src= "./src/assets/appointments.png" />
 </p>
 
-🎨 Discover Talented Artists: Dive into our handpicked collection of skilled tattoo artists.
+🌍✈️Explore Travel Agents Extraordinaire: Immerse yourself in our curated selection of travel agents.
 
 <p align="center">
-  <img src= "./src/assets/artist.png" />
+  <img src= "./src/assets/agent.png" />
+</p>
+
+🗓️ Delve into Detailed Bookings: Users can explore their bookings in depth, ensuring a seamless travel experience.
+
+<p align="center">
+  <img src= "./src/assets/agent.png" />
 </p>
 
 </details>
@@ -85,34 +90,36 @@ The aim of this initiative is to create a refined and professional frontend appl
 ## Installation Instructions
 
 1. **Clone the Repository:**
-    ```bash
-    git clone https://github.com/GabrielEscudillo/Front-end-Tattoo-Studio
-    cd front-end-tattoo-studio
-    ```
+
+   ```bash
+   git clone https://github.com/GabrielEscudillo/Front-end-Tattoo-Studio
+   cd front-end-tattoo-studio
+   ```
 
 2. **Install Frontend Dependencies:**
-    ```bash
-    npm install
-    ```
+
+   ```bash
+   npm install
+   ```
 
 3. **Configure the Backend:**
 
-    - Begin by creating a MySQL database.
-    - Follow the backend installation instructions provided in the [BackEnd-Tattoo-Studio repository](https://github.com/GabrielEscudillo/BackEnd-Tattoo-Studio).
+   - Begin by creating a MySQL database.
+   - Follow the backend installation instructions provided in the [BackEnd-Tattoo-Studio repository](https://github.com/GabrielEscudillo/BackEnd-Tattoo-Studio).
 
 4. **Install Backend Dependencies:**
-    ```bash
-    npm install
-    ```
+
+   ```bash
+   npm install
+   ```
 
 5. **Start the Application:**
-    - Navigate to the frontend directory and run `npm run dev` to start the frontend.
-    - Similarly, in the backend directory, execute `npm run dev` to initiate the backend server.
+   - Navigate to the frontend directory and run `npm run dev` to start the frontend.
+   - Similarly, in the backend directory, execute `npm run dev` to initiate the backend server.
 
 The application will be accessible via [http://localhost:5173/](http://localhost:5173/) for the frontend and [http://localhost:3000/](http://localhost:3000/) for the backend.
 
 Enjoy exploring the Tattoo Studio application and unleash your creativity!
-
 
 <!-- ## Endpoints -->
 
@@ -139,14 +146,14 @@ Enjoy exploring the Tattoo Studio application and unleash your creativity!
 ## Acknowledgements
 
 - I extend my heartfelt gratitude to the collaborative efforts of my esteemed colleagues [Erika Orlando](https://github.com/AkireOrl) and [Hector Soriano](https://github.com/HSoriano99). Throughout this journey, we maintained constant communication, providing mutual support and guidance to one another, fostering a profound sense of teamwork and camaraderie.
-I also wish to express my gratitude to my instructor, Demian, whose guidance and support have been instrumental throughout this collaborative endeavor.
-
+  I also wish to express my gratitude to my instructor, Demian, whose guidance and support have been instrumental throughout this collaborative endeavor.
 
 ## Author
 
 - **Gabriel Escudillo**
 
 ## Contact
+
 <div align="center">
 <a href = "gabrielescudillo@gmail.com"  target="_blank">
 <img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank">

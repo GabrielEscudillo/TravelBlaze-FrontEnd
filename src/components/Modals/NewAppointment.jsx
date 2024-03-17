@@ -8,7 +8,7 @@ import { userData } from "../../Pages/userSlice";
 
 export const NewAppointment = ({ showModal, setShowModal }) => {
   const userRdxData = useSelector(userData);
-  const myId = userRdxData.credentials.userData.userId;
+  const myId = userRdxData.credentials.userData?.userId;
   const [newAppointment, setNewAppointment] = useState({
     user_id: myId,
     agent_id: "",

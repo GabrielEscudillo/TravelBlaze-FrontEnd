@@ -46,7 +46,7 @@ export const AllBookings = () => {
   };
   return (
 <div className="container my-4"> 
-  <h2 className="text-center mb-4">My Bookings</h2>
+  <h2 className="text-center mb-4">All Bookings</h2>
   {bookings ? (
     bookings.length > 0 ? (
       <><div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -90,6 +90,9 @@ export const AllBookings = () => {
                               Hotel Name: {booking.hotel.hotel_name}
                             </p>
                             <p className="card-text mb-2">
+                              Address: {booking.hotel.address}
+                            </p>
+                            <p className="card-text mb-2">
                               Name: {booking.user.name}
                             </p>
                             <p className="card-text mb-2">
@@ -107,6 +110,12 @@ export const AllBookings = () => {
                         </p>
                         <p className="card-text mb-2">
                           Route: {booking.cruise.route}
+                        </p>
+                        <p className="card-text mb-2">
+                          Name: {booking.user.name}
+                        </p>
+                        <p className="card-text mb-2">
+                          Last Name {booking.user.last_name}
                         </p>
                       </div>
                     )}

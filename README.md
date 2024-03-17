@@ -80,10 +80,29 @@ The aim of this initiative is to create a refined and professional frontend appl
 <details>
 <summary>Superadmin Features</summary>
 
-📊 Data Management: Oversee and manage all data within the platform, including user information and appointments
+👤 User Management: Empowering the Superadmin with comprehensive oversight, enabling them to seamlessly navigate through all user profiles and efficiently manage user accounts, including the ability to remove users when necessary.
 
 <p align="center">
-  <img src= "./src/assets/superAdmin.png" />
+  <img src= "./src/assets/allusers.png" />
+</p>
+
+
+📋 Booking Oversight: Empowered with comprehensive insights, the Superadmin can meticulously review booking details and swiftly remove bookings when necessary, fostering streamlined control and system optimization.
+
+<p align="center">
+  <img src= "./src/assets/allbookings.png" />
+</p>
+
+🚀 Agent Onboarding: The Superadmin wields the authority to seamlessly onboard new agents onto the platform, enabling the expansion of our elite team of travel experts and ensuring unparalleled service excellence.
+
+<p align="center">
+  <img src= "./src/assets/newagent.png" />
+</p>
+
+🗓️ Appointment Management: The Superadmin can effortlessly oversee all appointments, ensuring seamless organization and facilitating quick decision-making. They also have the authority to delete appointments as needed, streamlining the scheduling process.
+
+<p align="center">
+  <img src= "./src/assets/allappointments.png" />
 </p>
 
 </details>

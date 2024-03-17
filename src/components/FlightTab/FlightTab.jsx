@@ -55,7 +55,7 @@ export const FlightTab = () => {
       setShowError(true);
       setTimeout(() => {
         setShowError(false);
-      }, 600); // muestra el mensaje d error
+      }, 600); 
       return;
     }
     try {

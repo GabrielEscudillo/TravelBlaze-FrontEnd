@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import "./Destinations.css"; // Estilo personalizado
-import { IoMdGlobe } from "react-icons/io"; // Importamos el icono para los continentes
+import "./Destinations.css"; 
+import { IoMdGlobe } from "react-icons/io"; 
 
 export const Destinations = () => {
   return (

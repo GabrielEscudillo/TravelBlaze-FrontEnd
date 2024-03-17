@@ -13,7 +13,7 @@ export const Bookings = () => {
 
   useEffect(() => {
     bringBookings(token, myId).then((res) => {
-      setBookingData(res.results); // Guarda solo el array de reservas en bookingData
+      setBookingData(res.results); 
     });
   }, [token, myId]);
   return (

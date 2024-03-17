@@ -1,6 +1,6 @@
 import "./Home.css";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { FaGlobe, FaPlane } from "react-icons/fa"; // Importamos iconos de react-icons
+import { FaGlobe, FaPlane } from "react-icons/fa"; 
 import { Link } from "react-router-dom";
 
 export const Home = () => {

@@ -6,7 +6,6 @@ export const Contact = () => {
     return (     <Container className="mt-5">
     <Row>
     <Col xs={12} md={4} className="mx-auto">
-        {/* Información de contacto y mensaje de invitación */}
         <div className="contact-info">
           <h3>Contact Information</h3>
           <p>Email: info@travelblaze.com</p>

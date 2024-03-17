@@ -65,7 +65,6 @@ export const NewBooking = () => {
 
         <Row className="justify-content-center">
           <Col md={14} className="booking-form">
-            {/* Aquí irán los inputs para crear una nueva reserva */}
           </Col>
         </Row>
       </div>

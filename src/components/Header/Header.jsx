@@ -21,7 +21,7 @@ const logMeOut = () => {
   dispatch(logout({ credentials: { token: null, userData: null } }));
   setTimeout(() => {
     navigate("/home");
-  }, 100); // Esperar 1 segundo (1000 milisegundos) antes de navegar
+  }, 100); 
 };
 
   return (

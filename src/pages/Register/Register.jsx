@@ -39,7 +39,6 @@ export const Register = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // verificar si estan completados los campos
     if (
       !signUpData.name ||
       !signUpData.last_name ||
@@ -48,7 +47,7 @@ export const Register = () => {
       !signUpData.password ||
       !signUpData.phone_number
     ) {
-      setShowError(true); // muestra el mensaje d error
+      setShowError(true); 
       return;
     }
     try {

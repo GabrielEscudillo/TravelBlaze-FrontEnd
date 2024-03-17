@@ -61,7 +61,7 @@ export const AllBookings = () => {
                       Date of Purchase: {booking.date_of_purchase}
                     </p>
                     <p className="card-text mb-2">Price: {booking.price}</p>
-                    <hr className="my-2" /> {/* Linea separadora */}
+                    <hr className="my-2" /> 
                     <div className="row align-items-start mb-2">
                       <div className="col-6">
                         {booking.flight && (

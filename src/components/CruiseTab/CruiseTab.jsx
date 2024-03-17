@@ -45,8 +45,7 @@ export const CruiseTab = () => {
       setShowError(true);
       setTimeout(() => {
         setShowError(false);
-      }, 600); // muestra el mensaje d error
-      return;
+      }, 600); 
     }
 
     try {

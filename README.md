@@ -56,18 +56,25 @@ The aim of this initiative is to create a refined and professional frontend appl
 🗓️ Delve into Detailed Bookings: Users can explore their bookings in depth, ensuring a seamless travel experience.
 
 <p align="center">
-  <img src= "./src/assets/agent.png" />
+  <img src= "./src/assets/mybookings.png" />
 </p>
 
 </details>
 <details>
-<summary>Artist Features</summary>
+<summary>Agent Features</summary>
 
 📅 Appointment Management: Artists can effortlessly view their scheduled appointments along with detailed information about the users they are scheduled with.
 
 <p align="center">
-  <img src= "./src/assets/artistAppointments.png" />
+  <img src= "./src/assets/agentappointments.png" />
 </p>
+
+📝 Booking Creation: Agents can easily create new bookings for travelers.
+
+<p align="center">
+  <img src= "./src/assets/newbooking.png" />
+</p>
+
 
 </details>
 <details>

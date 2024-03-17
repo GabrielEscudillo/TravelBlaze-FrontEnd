@@ -76,13 +76,13 @@ export const removeUser = async (token, id) => {
   return res.data;
 };
 
-export const bringAllBookings = async (token) => {
+export const bringAllBookings = async (token, page = 1, limit = 3) => {
   const config = {
     headers: {
       Authorization: "Bearer " + token,
     },
   };
-  const res = await axios.get(`${API_URL}/bookings/allbookings`, config);
+  const res = await axios.get(`${API_URL}/bookings/allbookings?page=${page}&limit=${limit}`, config);
   return res.data;
 };
 

@@ -14,15 +14,16 @@ export const Header = () => {
   const dispatch = useDispatch();
   const userRdxData = useSelector(userData);
 
-  const token = userRdxData?.credentials.token;
-  const decoded = userRdxData?.credentials?.userData;
+  const token = userRdxData.credentials.token
+  const decoded = userRdxData.credentials.userData
 
-  const logMeOut = () => {
-    dispatch(logout({ credentials: {} }));
-    setTimeout(() => {
-      navigate("/home");
-    });
-  };
+const logMeOut = () => {
+  dispatch(logout({ credentials: { token: null, userData: null } }));
+  setTimeout(() => {
+    navigate("/home");
+  }, 100); // Esperar 1 segundo (1000 milisegundos) antes de navegar
+};
+
   return (
     <Navbar
       className="custom-navbar"

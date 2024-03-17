@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { createBooking } from "../../Services/apiCalls";
 import { BsArrowRight, BsBoxArrowInUpRight, BsCalendar, BsFillAirplaneFill, BsFillPersonFill, BsFillPinMapFill } from "react-icons/bs";
 import { FaCalendarMinus, FaCalendarPlus, FaHotel, FaMapMarkerAlt, FaMoneyBillAlt, FaUsers } from "react-icons/fa";
+import { userData } from "../../Pages/userSlice";
+import { useSelector } from "react-redux";
 
 export const FlightAndHotelTab = () => {
   const [bookingInfo, setBookingInfo] = useState({
@@ -24,6 +26,8 @@ export const FlightAndHotelTab = () => {
   });
 
   const [showError, setShowError] = useState(false);
+  const userRdxData = useSelector(userData);
+  const token = userRdxData.credentials.token;
 
   const inputHandler = (event) => {
     setBookingInfo((prevState) => ({
@@ -58,7 +62,7 @@ export const FlightAndHotelTab = () => {
       return;
     }
     try {
-      await createBooking(bookingInfo);
+      await createBooking(token, bookingInfo);
       navigate("/profile");
     } catch (error) {
       console.error("Error while creating booking:", error);

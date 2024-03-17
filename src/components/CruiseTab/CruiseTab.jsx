@@ -4,6 +4,8 @@ import { createCruise } from "../../Services/apiCalls";
 import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { FaCalendarAlt, FaMapMarkerAlt, FaMoneyBillAlt, FaShip, FaStar, FaUser } from "react-icons/fa";
 import { BsArrowRight, BsCalendar } from "react-icons/bs";
+import { userData } from "../../Pages/userSlice";
+import { useSelector } from "react-redux";
 
 export const CruiseTab = () => {
   const [bookingInfo, setBookingInfo] = useState({
@@ -25,6 +27,8 @@ export const CruiseTab = () => {
   };
   const navigate = useNavigate();
   const [showError, setShowError] = useState(false);
+  const userRdxData = useSelector(userData);
+  const token = userRdxData.credentials.token;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,7 +50,7 @@ export const CruiseTab = () => {
     }
 
     try {
-      await createCruise(bookingInfo);
+      await createCruise(token, bookingInfo);
       navigate("/profile");
     } catch (error) {
       console.error("Error while creating booking:", error);

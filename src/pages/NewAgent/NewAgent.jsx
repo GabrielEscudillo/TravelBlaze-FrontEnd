@@ -14,6 +14,7 @@ import {
   FaPhone,
   FaImage,
 } from "react-icons/fa";
+import { userData } from "../userSlice";
 
 export const NewAgent = () => {
   const [agentSignUpData, setAgentSignUpData] = useState({
@@ -26,7 +27,9 @@ export const NewAgent = () => {
     photo: "",
     specialty: "",
   });
-  const [showError, setShowError] = useState(false); // Nuevo estado para manejar el mensaje de error
+  const [showError, setShowError] = useState(false); 
+  const userRdxData = useSelector(userData);
+  const token = userRdxData.credentials.token;
 
   const inputHandler = (event) => {
     setAgentSignUpData((prevState) => ({
@@ -53,7 +56,7 @@ export const NewAgent = () => {
       return;
     }
     try {
-      await agentSignUp(agentSignUpData);
+      await agentSignUp(token, agentSignUpData);
       navigate("/users"); 
     } catch (error) {
       console.error("Ha ocurrido un error", error);

@@ -13,6 +13,8 @@ import {
   FaCalendarMinus,
 } from "react-icons/fa";
 import { BsArrowRight } from "react-icons/bs";
+import { userData } from "../../Pages/userSlice";
+import { useSelector } from "react-redux";
 
 export const HotelTab = () => {
   const [bookingInfo, setBookingInfo] = useState({
@@ -27,6 +29,8 @@ export const HotelTab = () => {
   });
 
   const [showError, setShowError] = useState(false);
+  const userRdxData = useSelector(userData);
+  const token = userRdxData.credentials.token;
 
   const inputHandler = (event) => {
     setBookingInfo((prevState) => ({
@@ -55,7 +59,7 @@ export const HotelTab = () => {
       return;
     }
     try {
-      await createBooking(bookingInfo);
+      await createBooking(token, bookingInfo);
       navigate("/profile");
     } catch (error) {
       console.error("Error while creating booking:", error);

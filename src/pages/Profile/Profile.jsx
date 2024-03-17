@@ -19,6 +19,7 @@ import {
 } from "../../Services/apiCalls";
 import { NewAppointment } from "../../Components/Modals/NewAppointment";
 import "./Profile.css";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
   const [profileData, setProfileData] = useState({});
@@ -33,11 +34,16 @@ export const Profile = () => {
   const [showError, setShowError] = useState(false);
   const [originalAppointment, setOriginalAppointment] = useState(null);
   const [originalData, setOriginalData] = useState(profileData);
+  const navigate = useNavigate();
 
   const today = new Date();
   const date = today.toISOString().split("T")[0];
 
   useEffect(() => {
+    if (!token) {
+      navigate("/home")
+    }
+    else {
     bringProfile(token, myId).then((res) => {
       setProfileData(res);
       setEditableData(res);
@@ -49,7 +55,7 @@ export const Profile = () => {
       .catch((error) => {
         console.error("Error fetching appointments:", error);
       });
-  }, [token, myId]);
+    }}, [token, myId]);
 
   const inputHandler = (event) => {
     setEditableData((prevState) => ({
@@ -120,7 +126,7 @@ export const Profile = () => {
         const updatedAppointments = [...myAppointments];
         updatedAppointments[index] = { ...updatedAppointment, editable: false };
         setMyAppointments(updatedAppointments);
-        window.location.reload(); // Recargar la página
+        window.location.reload(); 
       })
       .catch((error) => {
         console.error("Error updating appointment:", error);
@@ -146,7 +152,7 @@ export const Profile = () => {
         {!!profileData.phone_number ? (
           <Container className="mt-5">
             <Row className="justify-content-center">
-              <Col md={6} className="mt-md-4">
+              <Col md={6} className="mt-md-4 mb-4">
                 <Card className="profile-card">
                   <Card.Title className="profile-card-title">
                     Welcome {profileData.name} {profileData.last_name}

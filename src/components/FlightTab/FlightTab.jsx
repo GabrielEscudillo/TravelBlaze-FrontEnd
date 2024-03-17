@@ -12,6 +12,8 @@ import {
   BsFillPinMapFill,
   BsBoxArrowInUpRight,
 } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import { userData } from "../../Pages/userSlice";
 export const FlightTab = () => {
   const [bookingInfo, setBookingInfo] = useState({
     date_of_purchase: "",
@@ -26,6 +28,8 @@ export const FlightTab = () => {
   });
 
   const [showError, setShowError] = useState(false);
+  const userRdxData = useSelector(userData);
+  const token = userRdxData.credentials.token;
 
   const inputHandler = (event) => {
     setBookingInfo((prevState) => ({
@@ -55,7 +59,7 @@ export const FlightTab = () => {
       return;
     }
     try {
-      await createBooking(bookingInfo);
+      await createBooking(token, bookingInfo);
       navigate("/profile");
     } catch (error) {
       console.error("Error while creating booking:", error);

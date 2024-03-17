@@ -61,10 +61,12 @@ export const bringAllUsers = async (token, page = 1, limit = 5) => {
       Authorization: "Bearer " + token,
     },
   };
-  const res = await axios.get(`${API_URL}/users/get/allusers?page=${page}&limit=${limit}`, config);
+  const res = await axios.get(
+    `${API_URL}/users/get/allusers?page=${page}&limit=${limit}`,
+    config
+  );
   return res.data;
 };
-
 
 export const removeUser = async (token, id) => {
   const config = {
@@ -82,7 +84,10 @@ export const bringAllBookings = async (token, page = 1, limit = 3) => {
       Authorization: "Bearer " + token,
     },
   };
-  const res = await axios.get(`${API_URL}/bookings/allbookings?page=${page}&limit=${limit}`, config);
+  const res = await axios.get(
+    `${API_URL}/bookings/allbookings?page=${page}&limit=${limit}`,
+    config
+  );
   return res.data;
 };
 
@@ -119,29 +124,45 @@ export const DeleteAppointment = async (token, id) => {
   return res;
 };
 
-export const agentSignUp = async (agentSignUpData) => {
+export const agentSignUp = async (token, agentSignUpData) => {
+  const config = {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  };
   const res = await axios.post(
     `${API_URL}/users/createagent`,
     agentSignUpData,
-    {}
+    
+    config
   );
   return res.data;
 };
 
-export const createBooking = async (bookingInfo) => {
+export const createBooking = async (token, bookingInfo) => {
+  const config = {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  };
   const res = await axios.post(
     `${API_URL}/bookings/newbooking`,
     bookingInfo,
-    {}
+    config
   );
   return res.data;
 };
 
-export const createCruise = async (bookingInfo) => {
+export const createCruise = async (token, bookingInfo) => {
+  const config = {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  };
   const res = await axios.post(
     `${API_URL}/bookings/newcruise`,
     bookingInfo,
-    {}
+    config
   );
   return res.data;
 };
@@ -153,10 +174,7 @@ export const bringAppointments = async (token, id) => {
     },
   };
 
-  const res = await axios.get(
-    `${API_URL}/appointments/user/${id}`,
-    config
-  );
+  const res = await axios.get(`${API_URL}/appointments/user/${id}`, config);
   return res.data;
 };
 

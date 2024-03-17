@@ -9,7 +9,7 @@ export const AgentAppointments = () => {
   const [myAppointments, setMyAppointments] = useState([]);
   const userRdxData = useSelector(userData);
   const token = userRdxData.credentials.token;
-  const id = userRdxData.credentials.userData.userId;
+  const id = userRdxData.credentials.userData?.userId;
 
   useEffect(() => {
     if (myAppointments.length === 0) {

@@ -67,10 +67,9 @@
 
 #appointment-box {
   margin-bottom: 10%;
+  overflow-x: hidden;
 
 }
-
-
 
 .buttons {
   display: flex;

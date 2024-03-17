@@ -43,7 +43,7 @@ export const Profile = () => {
     if (!token) {
       navigate("/home")
     }
-    else {
+    else if (!showModal){
     bringProfile(token, myId).then((res) => {
       setProfileData(res);
       setEditableData(res);
@@ -55,7 +55,7 @@ export const Profile = () => {
       .catch((error) => {
         console.error("Error fetching appointments:", error);
       });
-    }}, [token, myId]);
+    }}, [token, myId, showModal]);
 
   const inputHandler = (event) => {
     setEditableData((prevState) => ({

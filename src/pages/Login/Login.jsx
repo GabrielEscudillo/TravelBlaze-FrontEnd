@@ -27,7 +27,6 @@ export const Login = () => {
       ...prevState,
       [event.target.name]: event.target.value,
     }));
-    console.table(event.target.value);
   };
   const buttonHandler = (event) => {
     event.preventDefault();

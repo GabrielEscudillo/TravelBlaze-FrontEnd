@@ -9,7 +9,7 @@ export const Bookings = () => {
   const [bookingData, setBookingData] = useState([]);
   const userRdxData = useSelector(userData);
   const token = userRdxData.credentials.token;
-  const myId = userRdxData.credentials.userData.userId;
+  const myId = userRdxData.credentials.userData?.userId;
 
   useEffect(() => {
     bringBookings(token, myId).then((res) => {

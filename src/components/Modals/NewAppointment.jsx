@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { createAppointment, bringAllAgents, bringAllServices } from "../../Services/apiCalls"; 
 import { jwtDecode } from "jwt-decode";
 import { userData } from "../../Pages/userSlice";
+import "./NewAppointment.css";
 
 export const NewAppointment = ({ showModal, setShowModal }) => {
   const userRdxData = useSelector(userData);
@@ -74,7 +75,6 @@ export const NewAppointment = ({ showModal, setShowModal }) => {
   
     createAppointment(token, newAppointment)
       .then((res) => {
-        console.log(res);
         const decodedToken = jwtDecode(token);
         const data = {
           token: token,

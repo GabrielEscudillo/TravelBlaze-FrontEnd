@@ -118,8 +118,8 @@ The aim of this initiative is to create a refined and professional frontend appl
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/GabrielEscudillo/Front-end-Tattoo-Studio
-   cd front-end-tattoo-studio
+   git clone https://github.com/GabrielEscudillo/TravelBlaze-FrontEnd
+   cd travelblaze-frontend
    ```
 
 2. **Install Frontend Dependencies:**
@@ -131,7 +131,7 @@ The aim of this initiative is to create a refined and professional frontend appl
 3. **Configure the Backend:**
 
    - Begin by creating a MySQL database.
-   - Follow the backend installation instructions provided in the [BackEnd-Tattoo-Studio repository](https://github.com/GabrielEscudillo/BackEnd-Tattoo-Studio).
+   - Follow the backend installation instructions provided in the [TravelBlaze-Backend](https://github.com/GabrielEscudillo/TravelBlaze-Backend).
 
 4. **Install Backend Dependencies:**
 
@@ -145,34 +145,39 @@ The aim of this initiative is to create a refined and professional frontend appl
 
 The application will be accessible via [http://localhost:5173/](http://localhost:5173/) for the frontend and [http://localhost:3000/](http://localhost:3000/) for the backend.
 
-Enjoy exploring the Tattoo Studio application and unleash your creativity!
-
+Explore freely and let your imagination run wild with TravelBlaze!
 <!-- ## Endpoints -->
 
 ## Future Functionalities
 
 - **Users**
 
-📧 Email Verification: Validate your account through email verification, enhancing security and preventing unauthorized access.
 
-🔍 Password Recovery: Easily recover forgotten passwords through a streamlined process, ensuring uninterrupted access to your account.
+📧 Confirm Email: Authenticate your account via email confirmation, boosting security and thwarting unauthorized entry.
 
-- **Artists**
+🔍 Password Retrieval: Effortlessly regain access to your account by following a simplified procedure for password recovery, guaranteeing uninterrupted login.
 
-🎨 Portfolio Showcase: Display your artwork in a stunning portfolio, showcasing your talent and style to potential clients.
+🌟 Booking Modification Requests: Users will have the ability to request modifications to their bookings directly through the website, offering greater flexibility and convenience.
+
+- **Agents**
+
+🗓️ Appointment Editing: Empower agents to modify appointments, enabling them to efficiently manage their schedules.
+
+📝 Booking Data Modification: Provide agents with the capability to update booking information, ensuring accuracy and flexibility in managing travel arrangements.
+
+🛤️ Way Functionality: Introduce a new feature that allows agents to seamlessly navigate through the booking process, enhancing their efficiency and productivity.
 
 - **SuperAdmin**
 
-🚀 Feature Customization: Customize and configure platform features according to business needs and requirements, ensuring flexibility and scalability.
 
-🎨 Artist Creation and Portfolio Management: SuperAdmin will have the capability to create artist profiles and store their portfolios, showcasing their work to potential clients.
+🚀 Tailored Feature Development: Customize and adjust platform functionalities to align with specific business demands and objectives, fostering adaptability and scalability.
 
-🔧 System Maintenance: Perform system updates, maintenance tasks, and troubleshooting to keep the platform running smoothly and efficiently.
-
+🔧 Platform Upkeep: Execute system enhancements, routine maintenance activities, and issue resolution to uphold the platform's seamless operation and performance.
 ## Acknowledgements
 
-- I extend my heartfelt gratitude to the collaborative efforts of my esteemed colleagues [Erika Orlando](https://github.com/AkireOrl) and [Hector Soriano](https://github.com/HSoriano99). Throughout this journey, we maintained constant communication, providing mutual support and guidance to one another, fostering a profound sense of teamwork and camaraderie.
-  I also wish to express my gratitude to my instructor, Demian, whose guidance and support have been instrumental throughout this collaborative endeavor.
+- I want to express my sincere appreciation for the collaboration and hard work of my esteemed colleagues [Erika Orlando](https://github.com/AkireOrl) and [Hector Soriano](https://github.com/HSoriano99). Throughout this journey, we upheld consistent communication, offering each other mutual support and guidance, cultivating a strong sense of teamwork and camaraderie.
+Additionally, I'd like to extend my thanks to my instructor, Demian, whose invaluable guidance and support have played a crucial role in our collaborative efforts.
+
 
 ## Author
 
